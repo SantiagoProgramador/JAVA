@@ -90,7 +90,7 @@ public class Main {
         } while (!option.equals("4"));*/
 
         /*compound interest calculator*/
-        String calculator;
+        /*String calculator;
 
         double initialCapitalN = 0;
         double annualInterestN = 0;
@@ -155,6 +155,42 @@ public class Main {
                     JOptionPane.showMessageDialog(null,"Please enter a valid field");
                     break;
             }
-        } while (!calculator.equals("4"));
+        } while (!calculator.equals("4"));*/
+
+        /*Verify prime number*/
+            String primeVerifier;
+        do {
+            int contador = 0;
+
+            primeVerifier = JOptionPane.showInputDialog(null,"Welcome to the prime verifier \n Please type a number. \n type 0 to quit.");;
+            int primeVerifierN = Integer.parseInt(primeVerifier);
+            for (int i = 1; i <= primeVerifierN; i++){
+               if (primeVerifierN % i == 0) {
+                   contador++;
+               }
+               if (i == primeVerifierN) {
+                   if (contador == 2) {
+                       JOptionPane.showMessageDialog(null,"Your number is a prime number");
+                   } else {
+                       JOptionPane.showMessageDialog(null,"Your number is not a prime number");
+                   }
+               }
+            }
+
+            /*if (contador > 1){
+                JOptionPane.showMessageDialog(null,"Your number is not a prime number");
+                break;
+            } else {
+                JOptionPane.showMessageDialog(null,"Your number is a prime number");
+                break;
+            }
+*/
+
+
+            /*try {
+            }catch (Exception e){
+                JOptionPane.showMessageDialog(null,"Please type a valid number");
+            }*/
+        } while (!primeVerifier.equals("0"));
     }
 }
