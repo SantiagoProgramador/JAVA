@@ -90,7 +90,7 @@ public class Main {
         } while (!option.equals("4"));*/
 
         /*compound interest calculator*/
-        /*String calculator;
+        String calculator;
 
         double initialCapitalN = 0;
         double annualInterestN = 0;
@@ -99,6 +99,11 @@ public class Main {
 
 
         do {
+            System.out.println(initialCapitalN);
+            System.out.println(annualInterestN);
+            System.out.println(yearsN);
+
+
             if (yearsN != 0 && annualInterestN != 0 && initialCapitalN != 0){
                 double v = initialCapitalN * Math.pow((1 + annualInterestN),yearsN);
                 JOptionPane.showMessageDialog(null,"The resul is:" + v);
@@ -117,10 +122,12 @@ public class Main {
                 case "1":
                     String initialCapital = JOptionPane.showInputDialog(null,"Enter the initial capital:");
                     try {
-                         initialCapitalN = Double.parseDouble(initialCapital);
                         if (initialCapitalN <= 0) {
                             JOptionPane.showMessageDialog(null, "Please enter a valid field");
                             break;
+                        } else {
+                            initialCapitalN = Double.parseDouble(initialCapital);
+
                         }
                     }catch (Exception e){
                             JOptionPane.showMessageDialog(null,"Please enter a valid field");
@@ -129,10 +136,12 @@ public class Main {
                 case "2":
                     String annualInterest = JOptionPane.showInputDialog(null,"Enter the current annual interest:");
                     try {
-                         annualInterestN = Double.parseDouble(annualInterest);
                         if (annualInterestN <= 0) {
                             JOptionPane.showMessageDialog(null, "Please enter a valid field");
                             break;
+                        } else {
+                            annualInterestN = Double.parseDouble(annualInterest);
+
                         }
                     }catch (Exception e){
                             JOptionPane.showMessageDialog(null,"Please enter a valid field");
@@ -141,10 +150,12 @@ public class Main {
                 case "3":
                         String years = JOptionPane.showInputDialog(null,"Enter the amount of years:");
                         try {
-                             yearsN = Double.parseDouble(years);
                             if (yearsN <= 0) {
                                 JOptionPane.showMessageDialog(null, "Please enter a valid field");
                                 break;
+                            } else {
+                                yearsN = Double.parseDouble(years);
+
                             }
                         }catch (Exception e){
                             JOptionPane.showMessageDialog(null,"Please enter a valid field");
@@ -155,10 +166,10 @@ public class Main {
                     JOptionPane.showMessageDialog(null,"Please enter a valid field");
                     break;
             }
-        } while (!calculator.equals("4"));*/
+        } while (!calculator.equals("4"));
 
         /*Verify prime number*/
-            String primeVerifier;
+            /*String primeVerifier;
         do {
             int contador = 0;
 
@@ -175,7 +186,7 @@ public class Main {
                        JOptionPane.showMessageDialog(null,"Your number is not a prime number");
                    }
                }
-            }
+            }*/
 
             /*if (contador > 1){
                 JOptionPane.showMessageDialog(null,"Your number is not a prime number");
@@ -191,6 +202,6 @@ public class Main {
             }catch (Exception e){
                 JOptionPane.showMessageDialog(null,"Please type a valid number");
             }*/
-        } while (!primeVerifier.equals("0"));
+        /*} while (!primeVerifier.equals("0"));*/
     }
 }

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Desktop.iml" filepath="$PROJECT_DIR$/Desktop.iml" />
+      <module fileurl="file://$PROJECT_DIR$/_02_bucles/_02_bucles.iml" filepath="$PROJECT_DIR$/_02_bucles/_02_bucles.iml" />
+      <module fileurl="file://$PROJECT_DIR$/_03_arrays_lists/_03_arrays_lists.iml" filepath="$PROJECT_DIR$/_03_arrays_lists/_03_arrays_lists.iml" />
+      <module fileurl="file://$PROJECT_DIR$/java_exercise_1/java_exercise_1.iml" filepath="$PROJECT_DIR$/java_exercise_1/java_exercise_1.iml" />
+    </modules>
+  </component>
+</project>
