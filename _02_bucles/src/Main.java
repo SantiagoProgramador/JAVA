@@ -1,4 +1,6 @@
 import javax.swing.*;
+import java.util.Random;
+import java.util.Scanner;
 
 // Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
 // then press Enter. You can now see whitespace characters in your code.
@@ -96,18 +98,12 @@ public class Main {
         double annualInterestN = 0;
         double yearsN = 0;
 
-
-
         do {
-            System.out.println(initialCapitalN);
-            System.out.println(annualInterestN);
-            System.out.println(yearsN);
-
 
             if (yearsN != 0 && annualInterestN != 0 && initialCapitalN != 0){
                 double v = initialCapitalN * Math.pow((1 + annualInterestN),yearsN);
+                yearsN = 0; initialCapitalN = 0; annualInterestN = 0;
                 JOptionPane.showMessageDialog(null,"The resul is:" + v);
-                break;
             }
 
             calculator = JOptionPane.showInputDialog(null, """
@@ -122,45 +118,46 @@ public class Main {
                 case "1":
                     String initialCapital = JOptionPane.showInputDialog(null,"Enter the initial capital:");
                     try {
+                        initialCapitalN = Double.parseDouble(initialCapital);
                         if (initialCapitalN <= 0) {
                             JOptionPane.showMessageDialog(null, "Please enter a valid field");
+                            initialCapitalN = 0;
                             break;
-                        } else {
-                            initialCapitalN = Double.parseDouble(initialCapital);
-
                         }
                     }catch (Exception e){
-                            JOptionPane.showMessageDialog(null,"Please enter a valid field");
+                            JOptionPane.showMessageDialog(null,"Please enter a valid field" + e);
                         }
                     break;
                 case "2":
                     String annualInterest = JOptionPane.showInputDialog(null,"Enter the current annual interest:");
                     try {
+                        annualInterestN = Double.parseDouble(annualInterest);
+
                         if (annualInterestN <= 0) {
                             JOptionPane.showMessageDialog(null, "Please enter a valid field");
+                            annualInterestN = 0;
                             break;
-                        } else {
-                            annualInterestN = Double.parseDouble(annualInterest);
-
                         }
                     }catch (Exception e){
-                            JOptionPane.showMessageDialog(null,"Please enter a valid field");
+                            JOptionPane.showMessageDialog(null,"Please enter a valid field" + e);
                         }
                     break;
                 case "3":
                         String years = JOptionPane.showInputDialog(null,"Enter the amount of years:");
                         try {
+                            yearsN = Double.parseDouble(years);
                             if (yearsN <= 0) {
                                 JOptionPane.showMessageDialog(null, "Please enter a valid field");
+                                yearsN = 0;
                                 break;
-                            } else {
-                                yearsN = Double.parseDouble(years);
-
                             }
                         }catch (Exception e){
-                            JOptionPane.showMessageDialog(null,"Please enter a valid field");
+                            JOptionPane.showMessageDialog(null,"Please enter a valid field" + e);
                         }
 
+                    break;
+                case "4":
+                    JOptionPane.showMessageDialog(null,"Thanks four using the compound interest calculator.");
                     break;
                 default:
                     JOptionPane.showMessageDialog(null,"Please enter a valid field");
@@ -203,5 +200,41 @@ public class Main {
                 JOptionPane.showMessageDialog(null,"Please type a valid number");
             }*/
         /*} while (!primeVerifier.equals("0"));*/
+
+        /*Random random = new Random();
+        int randomNum = random.nextInt(100) +1;
+        System.out.println(randomNum);
+        int option = 0;
+
+       *//* double randomNum = Math.floor(Math.random());
+        double option = 0;
+        JOptionPane.showMessageDialog(null,"Guest the number between 1 and 100 \n Type 0 to Exit.");*//*
+
+        do {
+            try {
+                option = Integer.parseInt(JOptionPane.showInputDialog("Type the number! (0 to EXIT.)"));
+
+                if (option == randomNum){
+                    JOptionPane.showMessageDialog(null,"Congratulations you won the game!");
+                    option = 0;
+                } else {
+                    JOptionPane.showMessageDialog(null,"Keep trying!");
+                }
+            }catch (Exception e){
+                JOptionPane.showMessageDialog(null,"Please type a valid number");
+            }
+        } while (option != 0);
+
+        int pairCOunter = 0;
+        System.out.println("Summing pair numbers.");
+        for (int i = 1; i < 101; i++){
+            if (i % 2 == 0){
+                System.out.println(i);
+                pairCOunter += i;
+            }
+        }
+        System.out.println("The result is: " + pairCOunter);*/
+
+
     }
 }
