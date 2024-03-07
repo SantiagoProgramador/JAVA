@@ -39,8 +39,20 @@ public class Calculator {
                 userN2 = scanner.nextInt();
                 System.out.println("The result is:" + (userN1 * userN2));
                 break;
+            
+            case 3:
+                System.out.println("Type the first number");
+                userN1 = scanner.nextInt();
+                System.out.println("Type the second number");
+                userN2 = scanner.nextInt();
+                if (userN2 == 0) {
+                    System.out.println("You cannot divide by 0");
+                    break;
+                }
+                System.out.println("The result is:" + (userN1 / userN2));
+                break;
+            
         }
-        scanner.close();
     }
 
 }
