@@ -1,10 +1,6 @@
 import java.util.Scanner; 
 
 public class Conversor {
-    
-    public Conversor(){
-
-    }
 
     public  void Converseitor() {
         
