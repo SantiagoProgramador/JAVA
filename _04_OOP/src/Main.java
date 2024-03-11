@@ -60,7 +60,7 @@ public class Main {
         System.out.println(objProduct.getStock());*/
         
         //POINT 6
-        Student objStudent = new Student();
+        /*Student objStudent = new Student();
         objStudent.setName("pepe");
         ArrayList<Double> grade = new ArrayList<>(Arrays.asList(2.0,1.0,3.0,4.0,2.0));
 
@@ -70,7 +70,7 @@ public class Main {
 
         System.out.println(objStudent.averageGrades());
         objStudent.addGrades(5);
-        System.out.println(objStudent.getGrades());
+        System.out.println(objStudent.getGrades());*/
 
         scanner.close();
     }
