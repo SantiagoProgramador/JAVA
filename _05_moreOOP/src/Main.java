@@ -1,8 +1,9 @@
 import EmployeeSystem.Employee;
 import EmployeeSystem.EmployeeGestion;
 import EmployeeSystem.PermanentEmployee;
-import InventorySystem.Inventory;
-import InventorySystem.Product;
+
+// import InventorySystem.Inventory;
+// import InventorySystem.Product;
 
 import java.util.Scanner;
 
@@ -92,10 +93,10 @@ public class Main {
 
 
         } while (!option.equals("5"));
-        scanner.close();*/
+        */
 
         //POINT #2 Employees register system.
-        EmployeeGestion employeeGestion = new EmployeeGestion();
+        /*EmployeeGestion employeeGestion = new EmployeeGestion();
 
         Employee employee = new PermanentEmployee("Pepe",20,1,20000);
         Employee employee2 = new Employee("Papo",10,2,22000);
@@ -109,6 +110,11 @@ public class Main {
         employeeGestion.showEmployees();
         System.out.println("---------------------------------------------------------------------");
         employeeGestion.removeEmployees(2);
-        employeeGestion.showEmployees();
+        employeeGestion.showEmployees();*/
+        
+        //POINT #3 Course management system
+        
+
+        scanner.close();
     }
 }
