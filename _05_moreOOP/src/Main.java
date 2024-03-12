@@ -1,5 +1,9 @@
-import InventorySystem.Inventory;
-import InventorySystem.Product;
+import EmployeeSystem.Employee;
+import EmployeeSystem.EmployeeGestion;
+import EmployeeSystem.PermanentEmployee;
+
+// import InventorySystem.Inventory;
+// import InventorySystem.Product;
 
 import java.util.Scanner;
 
@@ -7,8 +11,9 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        Inventory inventory = new Inventory();
-        Product product = new Product();
+        // POINT #1 INVENTORY SYSTEM.
+        /*Inventory inventory = new Inventory();
+        Product product = new Product();*/
         /*Product product1 = new Product(1,"pencil",2000);
         Product product2 = new Product(2,"notebook",9000);
         Product product3 = new Product(3,"eraser",1000);
@@ -16,7 +21,7 @@ public class Main {
         inventory.addProduct(product2);
         inventory.addProduct(product3);*/
 
-        String option;
+        /*String option;
         do {
             try {
                 System.out.println("""
@@ -88,6 +93,28 @@ public class Main {
 
 
         } while (!option.equals("5"));
+        */
+
+        //POINT #2 Employees register system.
+        /*EmployeeGestion employeeGestion = new EmployeeGestion();
+
+        Employee employee = new PermanentEmployee("Pepe",20,1,20000);
+        Employee employee2 = new Employee("Papo",10,2,22000);
+        Employee employee3 = new Employee("Papa",25,3,21000);
+
+        employeeGestion.addEmployee(employee);
+        employeeGestion.addEmployee(employee2);
+        employeeGestion.addEmployee(employee3);
+
+
+        employeeGestion.showEmployees();
+        System.out.println("---------------------------------------------------------------------");
+        employeeGestion.removeEmployees(2);
+        employeeGestion.showEmployees();*/
+        
+        //POINT #3 Course management system
+        
+
         scanner.close();
     }
 }

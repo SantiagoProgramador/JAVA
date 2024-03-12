@@ -1,5 +1,4 @@
 import javax.swing.*;
-import java.util.Random;
 import java.util.Scanner;
 
 // Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
