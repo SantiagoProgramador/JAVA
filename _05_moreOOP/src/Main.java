@@ -134,13 +134,14 @@ public class Main {
                 switch (option){
                     case "1":
                         String option2 = null;
+                        do {
                             System.out.println("""
-                                    Administrate courses:
-                                    1. Create a course.
-                                    2. Search a course by its code.
-                                    3. Show current courses.
-                                    4. Exit.
-                                    """);
+                                        Administrate courses:
+                                        1. Create a course.
+                                        2. Search a course by its code.
+                                        3. Show current courses.
+                                        4. Exit.
+                                        """);
                             option2 = scanner.nextLine();
                             switch (option2){
                                 case "1":
@@ -157,30 +158,43 @@ public class Main {
                                 case "4":
                                     System.out.println("Closing the administration menu...");
                                     break;
-                        }
+                                default:
+                                    System.out.println("Type a valid value.");
+                                    break;
+                            }
+                        } while (!option2.equals("4"));
                         break;
                     case "2":
                         String option3 = null;
-                        System.out.println("""
-                                Administrate students:
-                                1. Add student
-                                2. Remove student
-                                3. Show students
-                                4. Exit
-                                """);
-                        option3 = scanner.next();
-                        switch (option3){
-                            case "1":
+                            do {
+                                System.out.println("""
+                                    Administrate students:
+                                    1. Add student
+                                    2. Remove student
+                                    3. Show students
+                                    4. Exit
+                                    """);
+                                option3 = scanner.next();
+                                switch (option3){
+                                    case "1":
+                                        courseSystem.showCourses();
 
-                                break;
-                            case "2":
-                                break;
-                            case "3":
-                                break;
-                            case "4":
-                                System.out.println("Closing the administration menu...");
-                                break;
-                        }
+                                        course.addStudent(scanner);
+                                        break;
+                                    case "2":
+                                        course.removeStudent(scanner);
+                                        break;
+                                    case "3":
+                                        course.showStudents();
+                                        break;
+                                    case "4":
+                                        System.out.println("Closing the administration menu...");
+                                        break;
+                                    default:
+                                        System.out.println("Please insert a valid value!");
+                                        break;
+                                }
+                            }while (!option3.equals("4"));
                         break;
                     case "3":
                         System.out.println("Thanks for using your Course management system");

@@ -20,15 +20,15 @@ public class Course {
     }
     //Methods
     public void addStudent(Scanner scanner){
+        System.out.println("Type the code of the course you want to add the student.");
         System.out.println("""
                     Add a new student:\s
                     Type the name of the student.
                     """);
-        String name = scanner.nextLine();
-
+        String name = scanner.next();
 
         System.out.println("Type the email of the student.");
-        String email = scanner.nextLine();
+        String email = scanner.next();
 
         Student student = new Student(idStudent,name,email);
         idStudent++;
