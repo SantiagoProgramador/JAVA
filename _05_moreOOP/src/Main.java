@@ -1,3 +1,6 @@
+import CourseSystem.CourseSystem;
+import CourseSystem.Course;
+
 import EmployeeSystem.Employee;
 import EmployeeSystem.EmployeeGestion;
 import EmployeeSystem.PermanentEmployee;
@@ -113,7 +116,83 @@ public class Main {
         employeeGestion.showEmployees();*/
         
         //POINT #3 Course management system
-        
+        CourseSystem courseSystem = new CourseSystem();
+        Course course = new Course();
+
+        String option = null;
+
+        do {
+            try {
+                System.out.println("""
+                        1. Admin courses.
+                        2. Admin Students.
+                        3. EXIT.
+                        Select an option:
+                        """);
+                option = scanner.nextLine();
+
+                switch (option){
+                    case "1":
+                        String option2 = null;
+                            System.out.println("""
+                                    Administrate courses:
+                                    1. Create a course.
+                                    2. Search a course by its code.
+                                    3. Show current courses.
+                                    4. Exit.
+                                    """);
+                            option2 = scanner.nextLine();
+                            switch (option2){
+                                case "1":
+                                    courseSystem.addCourse(scanner);
+                                    break;
+                                case "2":
+                                    System.out.println("Type the code of the course.");
+                                    String code = scanner.next();
+                                    System.out.println(courseSystem.findCode(code).toString());
+                                    break;
+                                case "3":
+                                    courseSystem.showCourses();
+                                    break;
+                                case "4":
+                                    System.out.println("Closing the administration menu...");
+                                    break;
+                        }
+                        break;
+                    case "2":
+                        String option3 = null;
+                        System.out.println("""
+                                Administrate students:
+                                1. Add student
+                                2. Remove student
+                                3. Show students
+                                4. Exit
+                                """);
+                        option3 = scanner.next();
+                        switch (option3){
+                            case "1":
+
+                                break;
+                            case "2":
+                                break;
+                            case "3":
+                                break;
+                            case "4":
+                                System.out.println("Closing the administration menu...");
+                                break;
+                        }
+                        break;
+                    case "3":
+                        System.out.println("Thanks for using your Course management system");
+                        break;
+                }
+
+            }catch (Exception e){
+                System.out.println("Please type a valid value!");
+            }
+
+        }while (!option.equals("3"));
+
 
         scanner.close();
     }
