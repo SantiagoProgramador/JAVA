@@ -8,6 +8,7 @@ import EmployeeSystem.PermanentEmployee;
 // import InventorySystem.Inventory;
 // import InventorySystem.Product;
 
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Main {
@@ -114,9 +115,65 @@ public class Main {
         System.out.println("---------------------------------------------------------------------");
         employeeGestion.removeEmployees(2);
         employeeGestion.showEmployees();*/
+        Employee employee = new Employee();
+        EmployeeGestion employeeGestion = new EmployeeGestion();
+        String option = null;
+
+        do {
+            try {
+                System.out.println("""
+                        1. Add a employee.
+                        2. Remove a employee.
+                        3. Show employees.
+                        4. Exit.
+                        """);
+                option = scanner.next();
+
+                switch (option){
+                    case "1":
+                        System.out.println("""
+                                    Type the data of the employee.
+                                    Name:
+                                    """);
+                        String name = scanner.next();
+                        System.out.println("Age:");
+                        int age = scanner.nextInt();
+                        System.out.println("Id:");
+                        int id = scanner.nextInt();
+                        System.out.println("Salary:");
+                        double salary = scanner.nextDouble();
+
+                        employee = new Employee(name,age,id,salary);
+                        System.out.println("Employee added successfully!");
+                        employeeGestion.addEmployee(employee);
+                        break;
+                    case "2":
+                        System.out.println("""
+                                    Type the id of the employee you want to remove:
+                                    """);
+                         id = scanner.nextInt();
+                        if (employeeGestion.removeEmployees(id)){
+                            System.out.println("Employee removed successfully!");
+
+                        } else {
+                            System.out.println("The employee was not found!");
+                        }
+                        break;
+                    case "3":
+                        employeeGestion.showEmployees();
+                        break;
+                    case "4":
+                        System.out.println("Closing the employee management system...");
+                        break;
+                }
+
+            } catch (Exception e){
+                System.out.println("An error occurred unexpectedly");
+            }
+        } while (!option.equals("4"));
         
         //POINT #3 Course management system
-        CourseSystem courseSystem = new CourseSystem();
+        /*CourseSystem courseSystem = new CourseSystem();
         Course course = new Course();
 
         String option = null;
@@ -158,9 +215,7 @@ public class Main {
                                 case "4":
                                     System.out.println("Closing the administration menu...");
                                     break;
-                                default:
-                                    System.out.println("Type a valid value.");
-                                    break;
+
                             }
                         } while (!option2.equals("4"));
                         break;
@@ -177,12 +232,32 @@ public class Main {
                                 option3 = scanner.next();
                                 switch (option3){
                                     case "1":
-                                        courseSystem.showCourses();
+                                        if(!courseSystem.showCourses()){
+                                            break;
+                                        }
+                                        System.out.println("Type the code of the course you want to add the student");
+                                        String code = scanner.next();
 
-                                        course.addStudent(scanner);
+                                        course = courseSystem.findCode(code);
+                                        if (course == null){
+                                            System.out.println("Course was not found!");
+                                        } else {
+                                            course.addStudent(scanner);
+                                        }
                                         break;
                                     case "2":
-                                        course.removeStudent(scanner);
+                                        if(!courseSystem.showCourses()){
+                                            break;
+                                        }
+                                        System.out.println("Type the code of the course you want to remove the student");
+                                         code = scanner.next();
+
+                                        course = courseSystem.findCode(code);
+                                        if (course == null) {
+                                            System.out.println("Course was not found!");
+                                        } else {
+                                            course.removeStudent(scanner);
+                                        }
                                         break;
                                     case "3":
                                         course.showStudents();
@@ -202,11 +277,11 @@ public class Main {
                 }
 
             }catch (Exception e){
-                System.out.println("Please type a valid value!");
+                System.out.println("Please type a valid value!" + e);
             }
 
         }while (!option.equals("3"));
-
+*/
 
         scanner.close();
     }

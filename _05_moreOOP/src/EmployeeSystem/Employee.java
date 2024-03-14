@@ -6,6 +6,7 @@ public class Employee extends Person{
     private double salary;
     
     //Constructors
+    public Employee(){}
     public Employee(int idEmployee, double salary) {
         this.idEmployee = idEmployee;
         this.salary = salary;

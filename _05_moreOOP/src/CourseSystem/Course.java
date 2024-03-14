@@ -20,7 +20,6 @@ public class Course {
     }
     //Methods
     public void addStudent(Scanner scanner){
-        System.out.println("Type the code of the course you want to add the student.");
         System.out.println("""
                     Add a new student:\s
                     Type the name of the student.
@@ -42,7 +41,7 @@ public class Course {
     }
     public void showStudents(){
         if (this.students.isEmpty()){
-            System.out.println("The course " + this.name + " does not have students.");
+            System.out.println("The course " + " does not have students.");
         } else {
             System.out.println("Below are the current students:");
             for (Student student : this.students){

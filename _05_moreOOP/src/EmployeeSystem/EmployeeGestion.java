@@ -18,9 +18,13 @@ public class EmployeeGestion{
         return this.employees.removeIf(employee -> employee.getIdEmployee() == id);
     }
     public void showEmployees(){
-        for (Employee employee : this.employees){
-            System.out.println("Current employees: "+ " Id: " + employee.getIdEmployee() + " Name: " + employee.getName()
-             + "  Age: " + employee.getSalary() + " Salary: " + employee.getSalary());
+        if (this.employees.isEmpty()){
+            System.out.println("Theres is not employees currently!");
+        } else {
+            for (Employee employee : this.employees){
+                System.out.println("Current employees: "+ " Id: " + employee.getIdEmployee() + " Name: " + employee.getName()
+                        + "  Age: " + employee.getSalary() + " Salary: " + employee.getSalary());
+            }
         }
     }
     //Setters and getters

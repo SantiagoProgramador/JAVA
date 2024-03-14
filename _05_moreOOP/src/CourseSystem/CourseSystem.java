@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class CourseSystem{
     //Attributes
-    private ArrayList<Course> courses = new ArrayList<>();
+    private ArrayList<Course> courses;
     //Constructors
     public CourseSystem(){
         this.courses = new ArrayList<>();
@@ -39,14 +39,16 @@ public class CourseSystem{
         }
         return null;
     }
-    public void showCourses(){
+    public boolean showCourses(){
         if (this.courses.isEmpty()){
             System.out.println("No courses right now.");
+            return false;
         } else {
             System.out.println("Courses: ");
             for (Course course : this.courses){
                 System.out.println(course.toString());
             }
+            return true;
         }
     }
     //Setters y getters
