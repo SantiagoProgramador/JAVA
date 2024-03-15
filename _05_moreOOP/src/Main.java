@@ -115,62 +115,63 @@ public class Main {
         System.out.println("---------------------------------------------------------------------");
         employeeGestion.removeEmployees(2);
         employeeGestion.showEmployees();*/
-        Employee employee = new Employee();
-        EmployeeGestion employeeGestion = new EmployeeGestion();
-        String option = null;
+        // Employee employee = new Employee();
+        // EmployeeGestion employeeGestion = new EmployeeGestion();
+        // String option = "0";
 
-        do {
-            try {
-                System.out.println("""
-                        1. Add a employee.
-                        2. Remove a employee.
-                        3. Show employees.
-                        4. Exit.
-                        """);
-                option = scanner.next();
+        // do {
+        //     try {
+        //         System.out.println("""
+        //                 1. Add a employee.
+        //                 2. Remove a employee.
+        //                 3. Show employees.
+        //                 4. Exit.
+        //                 """);
+        //         option = scanner.next();
 
-                switch (option){
-                    case "1":
-                        System.out.println("""
-                                    Type the data of the employee.
-                                    Name:
-                                    """);
-                        String name = scanner.next();
-                        System.out.println("Age:");
-                        int age = scanner.nextInt();
-                        System.out.println("Id:");
-                        int id = scanner.nextInt();
-                        System.out.println("Salary:");
-                        double salary = scanner.nextDouble();
+        //         switch (option){
+        //             case "1":
+        //                 System.out.println("""
+        //                             Type the data of the employee.
+        //                             Name:
+        //                             """);
+        //                 String name = scanner.next();
+        //                 System.out.println("Age:");
+        //                 int age = scanner.nextInt();
+        //                 System.out.println("Id:");
+        //                 int id = scanner.nextInt();
+        //                 System.out.println("Salary:");
+        //                 double salary = scanner.nextDouble();
 
-                        employee = new Employee(name,age,id,salary);
-                        System.out.println("Employee added successfully!");
-                        employeeGestion.addEmployee(employee);
-                        break;
-                    case "2":
-                        System.out.println("""
-                                    Type the id of the employee you want to remove:
-                                    """);
-                         id = scanner.nextInt();
-                        if (employeeGestion.removeEmployees(id)){
-                            System.out.println("Employee removed successfully!");
+        //                 employee = new Employee(name,age,id,salary);
+        //                 System.out.println("Employee added successfully!");
+        //                 employeeGestion.addEmployee(employee);
+        //                 break;
+        //             case "2":
+        //                 System.out.println("""
+        //                             Type the id of the employee you want to remove:
+        //                             """);
+        //                  id = scanner.nextInt();
+        //                 if (employeeGestion.removeEmployees(id)){
+        //                     System.out.println("Employee removed successfully!");
 
-                        } else {
-                            System.out.println("The employee was not found!");
-                        }
-                        break;
-                    case "3":
-                        employeeGestion.showEmployees();
-                        break;
-                    case "4":
-                        System.out.println("Closing the employee management system...");
-                        break;
-                }
+        //                 } else {
+        //                     System.out.println("The employee was not found!");
+        //                 }
+        //                 break;
+        //             case "3":
+        //                 employeeGestion.showEmployees();
+        //                 break;
+        //             case "4":
+        //                 System.out.println("Closing the employee management system...");
+        //                 break;
+        //         }
 
-            } catch (Exception e){
-                System.out.println("An error occurred unexpectedly");
-            }
-        } while (!option.equals("4"));
+        //     } catch (Exception e){
+        //         System.out.println("An error occurred unexpectedly");
+        //         scanner.next();
+        //     }
+        // } while (!option.equals("4"));
         
         //POINT #3 Course management system
         /*CourseSystem courseSystem = new CourseSystem();
