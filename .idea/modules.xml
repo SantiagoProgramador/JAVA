@@ -8,6 +8,8 @@
       <module fileurl="file://$PROJECT_DIR$/_03_arrays_lists/_03_arrays_lists.iml" filepath="$PROJECT_DIR$/_03_arrays_lists/_03_arrays_lists.iml" />
       <module fileurl="file://$PROJECT_DIR$/_04_OOP/_04_OOP.iml" filepath="$PROJECT_DIR$/_04_OOP/_04_OOP.iml" />
       <module fileurl="file://$PROJECT_DIR$/_05_moreOOP/_05_moreOOP.iml" filepath="$PROJECT_DIR$/_05_moreOOP/_05_moreOOP.iml" />
+      <module fileurl="file://$PROJECT_DIR$/_06_Delivery/_06_Delivery.iml" filepath="$PROJECT_DIR$/_06_Delivery/_06_Delivery.iml" />
+      <module fileurl="file://$PROJECT_DIR$/_07_mySQL/_07_mySQL.iml" filepath="$PROJECT_DIR$/_07_mySQL/_07_mySQL.iml" />
     </modules>
   </component>
 </project>
