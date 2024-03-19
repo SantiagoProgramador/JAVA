@@ -35,7 +35,11 @@ public class ConfigDB {
     public static void closeConnection(){
         try {
             //If there is an active connection we close it.
-            if (connection != null) connection.close();
+            if (connection != null){
+                connection.close();
+                System.out.print("Connection closed successfully!");
+            }
+
         } catch (SQLException e){
             System.out.println("Error >> " + e.getMessage());
         }

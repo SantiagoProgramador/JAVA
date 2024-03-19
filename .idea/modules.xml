@@ -10,6 +10,7 @@
       <module fileurl="file://$PROJECT_DIR$/_05_moreOOP/_05_moreOOP.iml" filepath="$PROJECT_DIR$/_05_moreOOP/_05_moreOOP.iml" />
       <module fileurl="file://$PROJECT_DIR$/_06_Delivery/_06_Delivery.iml" filepath="$PROJECT_DIR$/_06_Delivery/_06_Delivery.iml" />
       <module fileurl="file://$PROJECT_DIR$/_07_mySQL/_07_mySQL.iml" filepath="$PROJECT_DIR$/_07_mySQL/_07_mySQL.iml" />
+      <module fileurl="file://$PROJECT_DIR$/library_exercise_DB/library_exercise_DB.iml" filepath="$PROJECT_DIR$/library_exercise_DB/library_exercise_DB.iml" />
     </modules>
   </component>
 </project>
