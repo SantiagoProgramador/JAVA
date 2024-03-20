@@ -2,7 +2,7 @@ package entity;
 
 import java.util.Date;
 
-public class Book extends Author{
+public class Book{
     private int id;
     private String title;
     private Date publication_date;
@@ -14,23 +14,12 @@ public class Book extends Author{
         this.publication_date = publication_date;
         this.price = price;
     }
-    public Book(int id, String name, String nationality, int idAuthor, String title, Date publication_date, double price) {
-        super(id, name, nationality);
-        this.id = idAuthor;
-        this.title = title;
-        this.publication_date = publication_date;
-        this.price = price;
-    }
     public Book(){
-
     }
-
-    @Override
     public int getId() {
         return id;
     }
 
-    @Override
     public void setId(int id) {
         this.id = id;
     }

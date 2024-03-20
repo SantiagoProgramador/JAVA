@@ -1,9 +1,13 @@
 package entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Author {
     private int id;
     private String name;
     private String nationality;
+    private List<Book> bookList;
 
     public  Author(){
 
@@ -12,6 +16,7 @@ public class Author {
         this.id = id;
         this.name = name;
         this.nationality = nationality;
+        this.bookList = new ArrayList<>();
     }
 
     public int getId() {
@@ -38,12 +43,21 @@ public class Author {
         this.nationality = nationality;
     }
 
+    public List<Book> getBookList() {
+        return bookList;
+    }
+
+    public void setBookList(List<Book> bookList) {
+        this.bookList = bookList;
+    }
+
     @Override
     public String toString() {
         return "Author{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", nationality='" + nationality + '\'' +
+                ", bookList=" + bookList.toString() +
                 '}';
     }
 }
