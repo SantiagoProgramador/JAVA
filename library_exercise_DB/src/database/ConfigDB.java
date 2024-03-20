@@ -26,7 +26,10 @@ public class ConfigDB {
 
     public static void closeConnection(){
         try{
-            if (connection != null) connection.close();
+            if (connection != null) {
+                connection.close();
+                System.out.println("Connection closed successfully!");
+            }
         } catch (SQLException e) {
             System.out.print("Error >> " + e);
         }

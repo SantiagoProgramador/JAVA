@@ -12,4 +12,6 @@ public interface CRUD {
     public List<Object> findAll();
 
     public Object findById(int id);
+
+    public List<Object> findByName(String name);
 }
