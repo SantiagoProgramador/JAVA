@@ -63,4 +63,50 @@ public class CoderController {
 
         JOptionPane.showMessageDialog(null, coder.toString());
     }
+
+    public void deleteCoder(){
+        String coderList = "";
+        int confirm = 1;
+        for (Object object : this.coderModel.findAll()){
+            Coder coder = (Coder) object;
+            coderList += coder.toString() + "\n";
+        }
+
+        int idDelete = Integer.parseInt(JOptionPane.showInputDialog(coderList +"Type the id you want to delete"));
+        Coder coder = (Coder) this.coderModel.findById(idDelete);
+        if (coder == null){
+            JOptionPane.showMessageDialog(null,"Coder not found!");
+        } else {
+            confirm = JOptionPane.showConfirmDialog(null,"Are you sure you want to delete this coder?" + coder.toString());
+            if (confirm == 0){
+                this.coderModel.delete(coder);
+            }
+        }
+    }
+
+    public void updateCoder(){
+        String coderList = "";
+        int confirm = 1;
+        for (Object object : this.coderModel.findAll()){
+            Coder coder = (Coder) object;
+            coderList += coder.toString() + "\n";
+        }
+
+        int idUpdate = Integer.parseInt(JOptionPane.showInputDialog(coderList +"Type the id of the coder you want to update"));
+        Coder coder = (Coder) this.coderModel.findById(idUpdate);
+        if (coder == null){
+            JOptionPane.showMessageDialog(null,"Coder not found!");
+        } else {
+            confirm = JOptionPane.showConfirmDialog(null,"Are you sure you want to update this coder?: " + coder.toString());
+            if (confirm == 0){
+                String newName = JOptionPane.showInputDialog("Type the new name");
+                int newAge = Integer.parseInt(JOptionPane.showInputDialog("Type the new age"));
+                String newClan = JOptionPane.showInputDialog("Type the new clan");
+
+                coder = new Coder(idUpdate,newName,newAge,newClan);
+                this.coderModel.update(coder);
+
+            }
+        }
+    }
 }

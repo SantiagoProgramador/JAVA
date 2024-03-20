@@ -35,18 +35,63 @@ public class CoderModel implements CRUD {
         }catch (Exception e){
             JOptionPane.showMessageDialog(null, "Error >> " + e);
         }
-
+        ConfigDB.closeConnection();
         return coder;
     }
 
     @Override
     public boolean update(Object object) {
-        return false;
+        //1. Open connection
+        Connection connection = ConfigDB.openConnection();
+        //2. Spell the object
+        Coder coder = (Coder) object;
+        try {
+            String sql = "UPDATE coder SET name = ?, age = ?, clan = ? WHERE id = ?;";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql,PreparedStatement.RETURN_GENERATED_KEYS );
+            preparedStatement.setString(1,coder.getName());
+            preparedStatement.setInt(2,coder.getAge());
+            preparedStatement.setString(3,coder.getClan());
+            preparedStatement.setInt(4,coder.getId());
+            preparedStatement.execute();
+            ResultSet resultSet = (ResultSet) preparedStatement.getGeneratedKeys();
+            while (resultSet.next()){
+                coder.setId(resultSet.getInt(1));
+            }
+            preparedStatement.close();
+            JOptionPane.showMessageDialog(null,"Coder was successfully updated! " + coder.toString());
+
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null,"Error >> " + e);
+        }
+        ConfigDB.closeConnection();
+        return true;
     }
 
     @Override
     public boolean delete(Object object) {
-        return false;
+        Connection connection = ConfigDB.openConnection();
+        Coder coder = (Coder) object;
+        boolean isDeleted = false;
+
+        try {
+            String sql = "DELETE FROM coder WHERE coder.id = ?;";
+
+            PreparedStatement preparedStatement = connection.prepareStatement(sql,PreparedStatement.RETURN_GENERATED_KEYS);
+            preparedStatement.setInt(1,coder.getId());
+            int RowsAffected = preparedStatement.executeUpdate();
+
+            if (RowsAffected > 0){
+                isDeleted = true;
+                JOptionPane.showMessageDialog(null,"The coder was deleted successfully!");
+            } else {
+                JOptionPane.showMessageDialog(null,"Something went wrong, try again!");
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null,"Error >> " + e);
+        }
+        ConfigDB.closeConnection();
+
+        return isDeleted;
     }
 
     @Override
@@ -87,7 +132,29 @@ public class CoderModel implements CRUD {
 
     @Override
     public Object findById(int id) {
-        return null;
+        Connection connection = ConfigDB.openConnection();
+        Coder coder = null;
+
+        try{
+            String sql = "SELECT * FROM coder WHERE id = ?;";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1,id);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()){
+                coder = new Coder();
+                coder.setId(resultSet.getInt("id"));
+                coder.setName(resultSet.getString("name"));
+                coder.setAge(resultSet.getInt("age"));
+                coder.setClan(resultSet.getString("clan"));
+
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error >> " + e);
+        }
+        ConfigDB.closeConnection();
+        return coder;
     }
 
     public List<Object> findByName(String name){
