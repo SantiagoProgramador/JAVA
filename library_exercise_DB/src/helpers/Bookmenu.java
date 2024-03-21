@@ -1,8 +1,11 @@
 package helpers;
 
+import controller.BookController;
+
 import javax.swing.*;
 
 public class Bookmenu {
+    BookController bookController = new BookController();
     String optionBookMenu;
     public void  BooksMenu(){
         do {
@@ -18,14 +21,19 @@ public class Bookmenu {
                     """);
             switch (optionBookMenu){
                 case "1":
+                    bookController.addBook();
                     break;
                 case "2":
+                    JOptionPane.showMessageDialog(null,bookController.showBooks());
                     break;
                 case "3":
+                    bookController.searchBook();
                     break;
                 case "4":
+                    bookController.updateBook();
                     break;
                 case "5":
+                    bookController.deleteBook();
                     break;
                 case "6":
                     JOptionPane.showMessageDialog(null,"Closing the Book's menu...");

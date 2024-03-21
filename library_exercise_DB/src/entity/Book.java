@@ -5,10 +5,11 @@ import java.util.Date;
 public class Book{
     private int id;
     private String title;
-    private Date publication_date;
+    private int publication_date;
     private double price;
+    private int authorId;
 
-    public Book(int id, String title, Date publication_date, double price) {
+    public Book(int id, String title, double price, int publication_date) {
         this.id = id;
         this.title = title;
         this.publication_date = publication_date;
@@ -32,11 +33,11 @@ public class Book{
         this.title = title;
     }
 
-    public Date getPublication_date() {
+    public int getPublication_date() {
         return publication_date;
     }
 
-    public void setPublication_date(Date publication_date) {
+    public void setPublication_date(int publication_date) {
         this.publication_date = publication_date;
     }
 

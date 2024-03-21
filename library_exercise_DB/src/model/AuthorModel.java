@@ -61,7 +61,7 @@ public class AuthorModel implements CRUD {
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null,"Something went wrong..." + e);
         }
-        ConfigDB.openConnection();
+        ConfigDB.closeConnection();
         return authorList;
     }
 
@@ -81,6 +81,7 @@ public class AuthorModel implements CRUD {
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null,"Something went wrong... " + e);
         }
+        ConfigDB.closeConnection();
         return true;
     }
     public Object findById(int id){
@@ -99,11 +100,10 @@ public class AuthorModel implements CRUD {
                 author.setNationality(resultSet.getString("nationality"));
 
             }
-
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null,"Something went wrong... " + e);
         }
-
+        ConfigDB.closeConnection();
         return author;
     }
 
