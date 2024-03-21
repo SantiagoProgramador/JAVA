@@ -7,7 +7,7 @@ public class Author {
     private int id;
     private String name;
     private String nationality;
-    private List<Book> bookList;
+    private List<Book> bookList = new ArrayList<>();
 
     public  Author(){
 
@@ -53,11 +53,12 @@ public class Author {
 
     @Override
     public String toString() {
-        return "Author{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", nationality='" + nationality + '\'' +
-                ", bookList=" + bookList.toString() +
+        String strBookList = (this.bookList.isEmpty()) ? "The author doesn't have registered books at the moment" : bookList.toString();
+        return "Author {" +
+                "id= " + id +
+                ", name=' " + name + '\'' +
+                ", nationality=' " + nationality + '\'' +
+                ", book List= " +  strBookList +
                 '}';
     }
 }

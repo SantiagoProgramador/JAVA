@@ -22,7 +22,6 @@ public class BookModel implements CRUD {
     }
 
     @Override
-    public boolean delete(Object object) {
-        return false;
+    public void delete(int id) {
     }
 }

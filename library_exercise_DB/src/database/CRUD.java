@@ -9,5 +9,5 @@ public interface CRUD {
 
     public boolean update(Object object);
 
-    public boolean delete(Object object);
+    public void delete(int id);
 }
