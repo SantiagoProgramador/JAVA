@@ -19,6 +19,8 @@ public class BookModel implements CRUD {
     public Object create(Object object) {
         Connection connection = ConfigDB.openConnection();
         Book book = (Book) object;
+        List<Book> bookList = new ArrayList<>();
+        Author author = new Author();
         try {
             String sql = "INSERT INTO book (title,publication_date,price,author_id) VALUES(?,?,?,?)";
             PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement(sql,PreparedStatement.RETURN_GENERATED_KEYS);
@@ -33,6 +35,8 @@ public class BookModel implements CRUD {
 
             while (resultSet.next()){
                 book.setId(resultSet.getInt(1));
+                author.setBookList(bookList);
+                bookList.add(book);
             }
             JOptionPane.showMessageDialog(null,"Book successfully added!: " + book.toString());
         } catch (SQLException e) {

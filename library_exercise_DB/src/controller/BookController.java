@@ -39,6 +39,9 @@ public class BookController {
         }
     }
     public String showBooks(){
+        if (this.bookModel.read().isEmpty()){
+            return  "There arent books yet!";
+        }
         String bookList = "Below the current books: \n";
 
         for (Object object : this.bookModel.read()){
@@ -48,6 +51,10 @@ public class BookController {
         return bookList;
     }
     public void deleteBook(){
+        if (this.bookModel.read().isEmpty()){
+            JOptionPane.showMessageDialog(null,"Nothing to delete!");
+            return;
+        }
         String bookList = showBooks();
         int option = 1;
         int idDelete = Integer.parseInt(JOptionPane.showInputDialog(bookList + "\nType the id of the book you want to delete"));
@@ -55,6 +62,10 @@ public class BookController {
         if (option == 0) this.bookModel.delete(idDelete);
     }
     public void updateBook(){
+        if (this.bookModel.read().isEmpty()){
+            JOptionPane.showMessageDialog(null,"Nothing to update!");
+            return;
+        }
         String bookList = showBooks();
         int idUpdate = Integer.parseInt(JOptionPane.showInputDialog(bookList + "\nType the id of the book you want to update: "));
         Book book = (Book) this.bookModel.findById(idUpdate);
@@ -70,6 +81,10 @@ public class BookController {
         }
     }
     public void searchBook(){
+        if (this.bookModel.read().isEmpty()){
+            JOptionPane.showMessageDialog(null,"Nothing to search!");
+            return;
+        }
         String option = JOptionPane.showInputDialog("""
                 Type 1 to search by id
                 Type 2 to search by title

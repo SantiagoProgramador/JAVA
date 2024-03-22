@@ -25,6 +25,9 @@ public class AuthorController {
     }
 
     public String showAuthors(){
+        if (this.authorModel.read().isEmpty()){
+            return "There arent authors yet!";
+        }
         String authorList = "Below the current Authors: \n";
 
         for (Object object : this.authorModel.read()){
@@ -36,6 +39,10 @@ public class AuthorController {
     }
 
     public void deleteAuthor(){
+        if (this.authorModel.read().isEmpty()){
+            JOptionPane.showMessageDialog(null,"Nothing to delete!");
+            return;
+        }
         String authorList = showAuthors();
         int option = 1;
         int idDelete = Integer.parseInt(JOptionPane.showInputDialog(authorList + "\nType the id of the Author you want to delete"));
@@ -46,6 +53,10 @@ public class AuthorController {
     }
 
     public void updateAuthor(){
+        if (this.authorModel.read().isEmpty()){
+            JOptionPane.showMessageDialog(null,"Nothing to update!");
+            return;
+        }
         String authorList = showAuthors();
         int idUpdate = Integer.parseInt(JOptionPane.showInputDialog(authorList + "\nType the id of the Author you want to update:"));
         Author author = (Author) this.authorModel.findById(idUpdate);
