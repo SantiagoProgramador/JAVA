@@ -26,7 +26,7 @@ public class BookModel implements CRUD {
             preparedStatement.setString(1,book.getTitle());
             preparedStatement.setInt(2,book.getPublication_date());
             preparedStatement.setDouble(3,book.getPrice());
-            preparedStatement.setInt(4);
+            preparedStatement.setInt(4,book.getAuthorId());
             preparedStatement.execute();
 
             ResultSet resultSet = (ResultSet) preparedStatement.getGeneratedKeys();
@@ -58,6 +58,7 @@ public class BookModel implements CRUD {
                 book.setId(resultSet.getInt("id"));
                 book.setPublication_date(resultSet.getInt("publication_date"));
                 book.setPrice(resultSet.getDouble("price"));
+                book.setAuthorId(resultSet.getInt("author_id"));
                 bookList.add(book);
             }
         } catch (SQLException e) {
@@ -79,7 +80,7 @@ public class BookModel implements CRUD {
             while (resultSet.next()){
                 book.setId(resultSet.getInt("id"));
             }
-            JOptionPane.showMessageDialog(null,"Author was successfully updated!: " + book.toString());
+            JOptionPane.showMessageDialog(null,"Book was successfully updated!: " + book.toString());
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null,"Something went wrong... " + e);
         }

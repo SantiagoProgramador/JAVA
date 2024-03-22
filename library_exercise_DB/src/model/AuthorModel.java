@@ -3,6 +3,7 @@ package model;
 import database.CRUD;
 import database.ConfigDB;
 import entity.Author;
+import entity.Book;
 
 import javax.swing.*;
 import java.sql.Connection;
@@ -44,17 +45,25 @@ public class AuthorModel implements CRUD {
     public List<Object> read() {
         Connection connection = ConfigDB.openConnection();
         List<Object> authorList = new ArrayList<>();
-
+        List<Book> bookList = new ArrayList<>();
         try{
-            String sql = "SELECT * FROM author;";
+            String sql = "SELECT * FROM author JOIN book ON author.id = book.author_id;";
             PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement(sql);
 
             ResultSet resultSet = (ResultSet) preparedStatement.executeQuery();
             while (resultSet.next()){
                 Author author = new Author();
+                Book book = new Book();
+                book.setTitle(resultSet.getString("title"));
+                book.setPublication_date(resultSet.getInt("publication_date"));
+                book.setAuthorId(resultSet.getInt("author_id"));
+                book.setPrice(resultSet.getDouble("price"));
+                book.setId(resultSet.getInt("id"));
+                bookList.add(book);
                 author.setName(resultSet.getString("name"));
                 author.setId(resultSet.getInt("id"));
                 author.setNationality(resultSet.getString("nationality"));
+                author.setBookList(bookList);
                 authorList.add(author);
             }
 

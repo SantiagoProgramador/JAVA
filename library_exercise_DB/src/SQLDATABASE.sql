@@ -13,5 +13,5 @@ title varchar(40) not null,
 publication_date int not null,
 price double not null,
 author_id int not null,
-foreign key (author_id) references author (id)
+foreign key (author_id) references author (id) ON CASCADE DELETE
 );

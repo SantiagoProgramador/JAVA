@@ -19,23 +19,20 @@ public class BookController {
         this.authorController = new AuthorController();
     }
     public void addBook(){
-        Book book = new Book();
+        Book book;
+        ArrayList<Book> bookList = new ArrayList<>();
 
         String bookTitle = JOptionPane.showInputDialog("Type the title of the book: ");
         int bookPublication_date = Integer.parseInt(JOptionPane.showInputDialog("Type the year of publication of the book: "));
         double bookPrice = Double.parseDouble(JOptionPane.showInputDialog("Type the price of the book: "));
-
-        book.setTitle(bookTitle);
-        book.setPublication_date(bookPublication_date);
-        book.setPrice(bookPrice);
-        this.bookModel.create(book);
 
         int idAuthor = Integer.parseInt(JOptionPane.showInputDialog(authorController.showAuthors() +"\nType the author's id of this book:"));
         Author author = (Author) authorModel.findById(idAuthor);
         if (author == null){
             JOptionPane.showMessageDialog(null,"The author was not found!");
         } else {
-            ArrayList<Book> bookList = new ArrayList<>();
+            book = new Book(bookTitle,bookPublication_date,bookPrice,idAuthor);
+            this.bookModel.create(book);
             bookList.add(book);
             author.setBookList(bookList);
             JOptionPane.showMessageDialog(null,"Book added successfully!");
@@ -59,7 +56,7 @@ public class BookController {
     }
     public void updateBook(){
         String bookList = showBooks();
-        int idUpdate = Integer.parseInt(bookList + "\nType the id of the book you want to update: ");
+        int idUpdate = Integer.parseInt(JOptionPane.showInputDialog(bookList + "\nType the id of the book you want to update: "));
         Book book = (Book) this.bookModel.findById(idUpdate);
 
         if (book == null){

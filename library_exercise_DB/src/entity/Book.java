@@ -17,6 +17,14 @@ public class Book{
     }
     public Book(){
     }
+
+    public Book(String title, int publication_date, double price, int authorId) {
+        this.title = title;
+        this.publication_date = publication_date;
+        this.price = price;
+        this.authorId = authorId;
+    }
+
     public int getId() {
         return id;
     }
@@ -49,6 +57,13 @@ public class Book{
         this.price = price;
     }
 
+    public int getAuthorId() {
+        return authorId;
+    }
+    public void setAuthorId(int authorId) {
+        this.authorId = authorId;
+    }
+
     @Override
     public String toString() {
         return "Book{" +
@@ -56,6 +71,7 @@ public class Book{
                 ", title='" + title + '\'' +
                 ", publication_date=" + publication_date +
                 ", price=" + price +
+                ", authorId=" + authorId +
                 '}';
     }
 }
