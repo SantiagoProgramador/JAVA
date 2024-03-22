@@ -70,6 +70,36 @@ public class BookController {
         }
     }
     public void searchBook(){
-
+        String option = JOptionPane.showInputDialog("""
+                Type 1 to search by id
+                Type 2 to search by title
+                Type 3 to search by author
+                """);
+        switch (option){
+            case "1":
+                int id = Integer.parseInt(JOptionPane.showInputDialog(showBooks() + " Type the id of the book"));
+                if (this.bookModel.findById(id) == null){
+                    JOptionPane.showMessageDialog(null,"The book is not in the library");
+                }
+                JOptionPane.showMessageDialog(null,"Below the book you want to search " + this.bookModel.findById(id).toString());
+                break;
+            case "2":
+                String title = JOptionPane.showInputDialog(showBooks() + " Type the title of the book ");
+                if (this.bookModel.findByTitle(title) == null){
+                    JOptionPane.showMessageDialog(null,"There are no books in the library with the title: " + title);
+                }
+                JOptionPane.showMessageDialog(null,"Below the book you want to search " + this.bookModel.findByTitle(title).toString());
+                break;
+            case "3":
+                String author = JOptionPane.showInputDialog(showBooks() + " Type the name of the author of the books you want to search");
+                if (this.bookModel.findByAuthor(author) == null){
+                    JOptionPane.showMessageDialog(null,"The book is not in the library");
+                }
+                JOptionPane.showMessageDialog(null,"Below the book you want to search " + this.bookModel.findByAuthor(author).toString());
+                break;
+            default:
+                JOptionPane.showMessageDialog(null, "Please enter a valid option");
+                break;
+        }
     }
 }

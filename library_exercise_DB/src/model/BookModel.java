@@ -129,4 +129,46 @@ public class BookModel implements CRUD {
         ConfigDB.closeConnection();
         return book;
     }
+    public Object findByTitle(String title) {
+        Connection connection = ConfigDB.openConnection();
+        Book book = null;
+        try {
+            String sql = "SELECT * FROM book WHERE title LIKE '%" + title + "%'";
+            PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement(sql);
+
+            ResultSet resultSet = (ResultSet) preparedStatement.executeQuery();
+            while (resultSet.next()){
+                book = new Book();
+                book.setId(resultSet.getInt("id"));
+                book.setTitle(resultSet.getString("title"));
+                book.setPrice(resultSet.getDouble("price"));
+                book.setPublication_date(resultSet.getInt("publication_date"));
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null,"Something went wrong... " + e);
+        }
+        ConfigDB.closeConnection();
+        return book;
+    }
+    public Object findByAuthor(String author){
+        Connection connection = ConfigDB.openConnection();
+        Book book = null;
+        try {
+            String sql = "SELECT * FROM book JOIN author ON book.author_id = author.id WHERE author.name LIKE '%" + author + "%'";
+            PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement(sql);
+
+            ResultSet resultSet = (ResultSet) preparedStatement.executeQuery();
+            while (resultSet.next()){
+                book = new Book();
+                book.setId(resultSet.getInt("id"));
+                book.setTitle(resultSet.getString("title"));
+                book.setPrice(resultSet.getDouble("price"));
+                book.setPublication_date(resultSet.getInt("publication_date"));
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null,"Something went wrong... " + e);
+        }
+        ConfigDB.closeConnection();
+        return book;
+    }
 }
