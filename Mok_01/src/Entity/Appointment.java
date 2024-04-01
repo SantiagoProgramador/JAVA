@@ -1,16 +1,20 @@
 package Entity;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.spi.LocaleNameProvider;
+
 public class Appointment {
     //Attributes
     private int id;
-    private int date;
-    private int hour;
+    private LocalDate date;
+    private LocalTime hour;
     private String motive;
     private Patient patient;
     private Doctor doctor;
 
     //Constructor
-    public Appointment(int id, int date, int hour, String motive, Patient patient, Doctor doctor) {
+    public Appointment(int id, LocalDate date, LocalTime hour, String motive, Patient patient, Doctor doctor) {
         this.id = id;
         this.date = date;
         this.hour = hour;
@@ -29,19 +33,19 @@ public class Appointment {
         this.id = id;
     }
 
-    public int getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(int date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
-    public int getHour() {
+    public LocalTime getHour() {
         return hour;
     }
 
-    public void setHour(int hour) {
+    public void setHour(LocalTime hour) {
         this.hour = hour;
     }
 

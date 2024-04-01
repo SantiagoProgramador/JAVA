@@ -1,5 +1,6 @@
 package Entity;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Patient {
@@ -7,13 +8,13 @@ public class Patient {
     private int id;
     private String name;
     private String surname;
-    private int birthdate;
+    private LocalDate birthdate;
     private String identification_document;
     private ArrayList<Appointment> Appointment_list;
 
     //Constructor
 
-    public Patient(int id, String name, String surname, int birthdate, String identification_document) {
+    public Patient(int id, String name, String surname, LocalDate birthdate, String identification_document) {
         this.id = id;
         this.name = name;
         this.surname = surname;
@@ -49,11 +50,11 @@ public class Patient {
         this.surname = surname;
     }
 
-    public int getBirthdate() {
+    public LocalDate getBirthdate() {
         return birthdate;
     }
 
-    public void setBirthdate(int birthdate) {
+    public void setBirthdate(LocalDate birthdate) {
         this.birthdate = birthdate;
     }
 
