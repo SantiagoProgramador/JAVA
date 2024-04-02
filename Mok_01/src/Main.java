@@ -2,7 +2,9 @@ import Database.ConfigDB;
 import Entity.Appointment;
 import Entity.Doctor;
 import Entity.Patient;
+import Entity.Specialty;
 import Model.Appointment_model;
+import Model.Specialty_model;
 
 import javax.swing.*;
 
@@ -16,10 +18,10 @@ public class Main {
                 option = JOptionPane.showInputDialog("""
                         WELCOME TO THE ONLINE HOSPITAL SERVICE
                         Please choose an option:
-                        1. Add a specialty.
-                        2, Add a doctor.
-                        3. Register a patient.
-                        4. Schedule an appointment.
+                        1. Specialties menu.
+                        2. Doctors menu.
+                        3. Patients menu.
+                        4. Appointments menu.
                         5. EXIT
                         """);
                 switch (option){

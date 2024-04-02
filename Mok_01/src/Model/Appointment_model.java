@@ -109,7 +109,7 @@ public class Appointment_model implements CRUD {
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null,"Error >> " + e);
         }
-
+        ConfigDB.closeConnection();
         return true;
     }
 
