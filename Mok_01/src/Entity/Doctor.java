@@ -1,13 +1,14 @@
 package Entity;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Doctor {
     //Attributes
     private int id;
     private String name;
     private String surname;
-    private ArrayList<Appointment> Appointment_list;
+    private List<Object> Appointment_list;
     private Specialty specialty;
 
     //Constructors
@@ -46,11 +47,11 @@ public class Doctor {
         this.surname = surname;
     }
 
-    public ArrayList<Appointment> getAppointment_list() {
+    public List<Object> getAppointment_list() {
         return Appointment_list;
     }
 
-    public void setAppointment_list(ArrayList<Appointment> appointment_list) {
+    public void setAppointment_list(List<Object> appointment_list) {
         Appointment_list = appointment_list;
     }
 

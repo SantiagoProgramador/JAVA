@@ -7,7 +7,7 @@ public class Author {
     private int id;
     private String name;
     private String nationality;
-    private List<Book> bookList = new ArrayList<Book>();
+    private List<Book> bookList = new ArrayList<>();
 
     public  Author(){
 

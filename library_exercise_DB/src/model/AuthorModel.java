@@ -51,6 +51,7 @@ public class AuthorModel implements CRUD {
 
             ResultSet resultSet = (ResultSet) preparedStatement.executeQuery();
             while (resultSet.next()){
+
                 Author author = new Author();
 
                 author.setName(resultSet.getString("name"));

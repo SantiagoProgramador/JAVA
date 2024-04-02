@@ -10,7 +10,7 @@ public class ConfigDB {
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
 
-            String url = "jdbc:mysql://bkvtfutdokhfsayrjdq2-mysql.services.clever-cloud.com/3306/bkvtfutdokhfsayrjdq2";
+            String url = "jdbc:mysql://bkvtfutdokhfsayrjdq2-mysql.services.clever-cloud.com:3306/bkvtfutdokhfsayrjdq2";
             String user = "ucbjxkrbjudebzyu";
             String password = "B174yRrEFbKLPUjsISLe";
 
