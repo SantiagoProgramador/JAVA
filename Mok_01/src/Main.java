@@ -1,3 +1,7 @@
+import ControllerMenus.AppointmentMenu;
+import ControllerMenus.DoctorMenu;
+import ControllerMenus.PatientMenu;
+import ControllerMenus.SpecialtyMenu;
 import Database.ConfigDB;
 import Entity.Appointment;
 import Entity.Doctor;
@@ -10,7 +14,7 @@ import javax.swing.*;
 
 public class Main {
     public static void main(String[] args) {
-        Appointment_model appointmentModel = new Appointment_model();
+
 
         String option = null;
         do {
@@ -26,12 +30,20 @@ public class Main {
                         """);
                 switch (option){
                     case "1":
+                        SpecialtyMenu specialtyMenu = new SpecialtyMenu();
+                        specialtyMenu.menu();
                         break;
                     case "2":
+                        DoctorMenu doctorMenu = new DoctorMenu();
+                        doctorMenu.menu();
                         break;
                     case "3":
+                        PatientMenu patientMenu = new PatientMenu();
+                        patientMenu.menu();
                         break;
                     case "4":
+                        AppointmentMenu appointmentMenu = new AppointmentMenu();
+                        appointmentMenu.menu();
                         break;
                     case "5":
                         JOptionPane.showMessageDialog(null,"Thanks for using our services come back soon :D4");
@@ -39,7 +51,7 @@ public class Main {
                 }
 
             } catch (Exception e){
-                JOptionPane.showMessageDialog(null, "Something went wrong... please try again.");
+                JOptionPane.showMessageDialog(null, "Something went wrong... please try again." + e);
             }
         } while (!option.equals("5"));
     }

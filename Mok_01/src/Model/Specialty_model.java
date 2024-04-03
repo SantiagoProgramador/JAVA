@@ -29,7 +29,7 @@ public class Specialty_model implements CRUD{
             preparedStatement.execute();
             ResultSet resultSet = (ResultSet) preparedStatement.getGeneratedKeys();
             while (resultSet.next()){
-                specialty.setId(resultSet.getInt("id_speciality"));
+                specialty.setId(resultSet.getInt(1));
             }
             JOptionPane.showMessageDialog(null,"Specialty created successfully " + specialty.toString());
         } catch (SQLException e) {

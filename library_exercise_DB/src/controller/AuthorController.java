@@ -44,7 +44,7 @@ public class AuthorController {
             return;
         }
         String authorList = showAuthors();
-        int option = 1;
+        int option;
         int idDelete = Integer.parseInt(JOptionPane.showInputDialog(authorList + "\nType the id of the Author you want to delete"));
         option = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete the author?");
 
