@@ -30,7 +30,7 @@ public class Doctor_model implements CRUD {
 
             ResultSet resultSet = (ResultSet) preparedStatement.getGeneratedKeys();
             while (resultSet.next()){
-                doctor.setId(resultSet.getInt("id_doctor"));
+                doctor.setId(resultSet.getInt(1));
             }
             JOptionPane.showMessageDialog(null,"Doctor added successfully! " + doctor.toString());
 
@@ -47,7 +47,7 @@ public class Doctor_model implements CRUD {
         List<Object> Doctor_list = new ArrayList<>();
 
         try{
-            String sql = "SELECT * FROM doctors";
+            String sql = "SELECT * FROM doctors JOIN specialities ON doctors.id_speciality = specialities.id_speciality";
             PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement(sql);
 
             ResultSet resultSet = (ResultSet) preparedStatement.executeQuery();
@@ -56,7 +56,16 @@ public class Doctor_model implements CRUD {
                 doctor.setId(resultSet.getInt("id_doctor"));
                 doctor.setName(resultSet.getString("name"));
                 doctor.setSurname(resultSet.getString("surname"));
+                Specialty specialty = new Specialty();
+                specialty.setId(resultSet.getInt("specialities.id_speciality"));
+                specialty.setName(resultSet.getString("specialities.name"));
+                specialty.setDescription(resultSet.getString("specialities.description"));
+                doctor.setSpecialty(specialty);
                 Doctor_list.add(doctor);
+                //THIS WAY IS TERRIBLE FOR THE PERFORMANCE
+                //Specialty_model specialtyModel = New Specialty_model();
+                //doctor.setSpecialty((Specialty)specialtyModel.findById(resulSet.getInt("id_specialty")));
+                //FOR EACH ITERATION IN THE LOOP WHILE CREATES A CONNECTION TO THE DATABASE AND THEN CLOSE IT BECAUSE THE METHOD FINDBYID HAS CONFIGDB.OPENCONNECTION();
             }
 
         } catch (SQLException e) {

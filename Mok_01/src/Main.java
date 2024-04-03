@@ -46,7 +46,7 @@ public class Main {
                         appointmentMenu.menu();
                         break;
                     case "5":
-                        JOptionPane.showMessageDialog(null,"Thanks for using our services come back soon :D4");
+                        JOptionPane.showMessageDialog(null,"Thanks for using our services come back soon :D");
                         break;
                 }
 

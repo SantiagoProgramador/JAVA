@@ -32,7 +32,7 @@ public class Appointment_model implements CRUD {
 
             ResultSet resultSet = (ResultSet) preparedStatement.getGeneratedKeys();
             while (resultSet.next()){
-                appointment.setId(resultSet.getInt("id_appointment"));
+                appointment.setId(resultSet.getInt(1));
             }
             JOptionPane.showMessageDialog(null,"Appointment booked successfully" + appointment.toString());
 
@@ -50,14 +50,19 @@ public class Appointment_model implements CRUD {
 
         try{
 
-            String sql = "SELECT * FROM `appointments` JOIN doctors ON doctors.id_doctor = appointments.id_doctor JOIN patients ON patients.id_patient = appointments.id_patient";
+            String sql = "SELECT * FROM `appointments` JOIN doctors ON doctors.id_doctor = appointments.id_doctor JOIN patients ON patients.id_patient = appointments.id_patient JOIN specialities ON doctors.id_speciality = specialities.id_speciality";
             PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement(sql);
             ResultSet resultSet = (ResultSet) preparedStatement.executeQuery();
 
             while (resultSet.next()){
+                Specialty specialty = new Specialty();
                 Appointment appointment = new Appointment();
                 Patient patient = new Patient();
                 Doctor doctor = new Doctor();
+
+                specialty.setId(resultSet.getInt("specialities.id_speciality"));
+                specialty.setName(resultSet.getString("specialities.name"));
+                specialty.setDescription(resultSet.getString("specialities.description"));
 
                 patient.setId(resultSet.getInt("id_patient"));
                 patient.setName(resultSet.getString("patients.name"));
@@ -65,9 +70,11 @@ public class Appointment_model implements CRUD {
                 patient.setBirthdate(resultSet.getDate("patients.birthdate").toLocalDate());
                 patient.setIdentification_document(resultSet.getString("patients.identification_document"));
 
+
                 doctor.setId(resultSet.getInt("id_doctor"));
                 doctor.setName(resultSet.getString("doctors.name"));
                 doctor.setSurname(resultSet.getString("doctors.surname"));
+                doctor.setSpecialty(specialty);
 
                 appointment.setId(resultSet.getInt("id_appointment"));
                 appointment.setDate(resultSet.getDate("date_appointment").toLocalDate());
@@ -147,7 +154,7 @@ public class Appointment_model implements CRUD {
           ResultSet resultSet = (ResultSet) preparedStatement.executeQuery();
           while (resultSet.next()){
               appointment = new Appointment();
-              appointment.setId(resultSet.getInt("id"));
+              appointment.setId(resultSet.getInt("id_appointment"));
               appointment.setMotive(resultSet.getString("motive"));
               appointment.setDate(resultSet.getDate("date_appointment").toLocalDate());
               appointment.setHour(resultSet.getTime("time_appointment").toLocalTime());

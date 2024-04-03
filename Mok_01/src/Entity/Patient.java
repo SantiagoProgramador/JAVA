@@ -11,7 +11,7 @@ public class Patient {
     private String surname;
     private LocalDate birthdate;
     private String identification_document;
-    private List<Object> Appointment_list;
+    private List<Object> Appointment_list = new ArrayList<>();
 
     //Constructor
 
@@ -78,13 +78,14 @@ public class Patient {
     //ToString
     @Override
     public String toString() {
+        String list = this.Appointment_list.isEmpty() ? "No appointments scheduled yet." : this.Appointment_list.toString();
         return "Patient{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", birthdate=" + birthdate +
                 ", identification_document='" + identification_document + '\'' +
-                ", Appointment_list=" + Appointment_list.toString() +
+                ", Appointment_list=" + list +
                 '}';
     }
 }

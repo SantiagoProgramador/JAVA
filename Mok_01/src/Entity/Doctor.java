@@ -8,7 +8,7 @@ public class Doctor {
     private int id;
     private String name;
     private String surname;
-    private List<Object> Appointment_list;
+    private List<Object> Appointment_list = new ArrayList<>();
     private Specialty specialty;
 
     //Constructors
@@ -67,11 +67,12 @@ public class Doctor {
 
     @Override
     public String toString() {
+        String list = this.Appointment_list.isEmpty() ? "The doctor " + this.name + " does not have appointments scheduled" : this.Appointment_list.toString();
         return "Doctor{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
-                ", Appointment_list=" + Appointment_list.toString() +
+                ", Appointment_list=" + list +
                 ", specialty=" + specialty.toString() +
                 '}';
     }
