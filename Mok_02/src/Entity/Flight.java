@@ -69,6 +69,9 @@ public class Flight {
     public void setReservations_list(ArrayList<Reservation> reservations_list) {
         this.reservations_list = reservations_list;
     }
+    public void addReservation(Reservation reservation){
+        this.reservations_list.add(reservation);
+    }
 
     @Override
     public String toString() {
@@ -77,8 +80,8 @@ public class Flight {
                 ", destination='" + destination + '\'' +
                 ", departure_time=" + departure_time +
                 ", departure_date=" + departure_date +
-                ", airplane=" + airplane +
-                ", reservations_list=" + reservations_list +
+                ", airplane=" + airplane.toString() +
+                ", reservations_list=" + reservations_list.toString() +
                 '}';
     }
 }

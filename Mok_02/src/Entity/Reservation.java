@@ -63,7 +63,7 @@ public class Reservation {
         return "Reservation{" +
                 "id=" + id +
                 ", passenger=" + passenger.getName() +
-                ", flight=" + "flight.getId()" +
+                ", flight=" + flight.getId() +
                 ", booking_date=" + booking_date +
                 ", seat='" + seat + '\'' +
                 '}';

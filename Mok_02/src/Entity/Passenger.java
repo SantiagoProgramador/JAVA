@@ -1,6 +1,7 @@
 package Entity;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Passenger {
     private int id;
@@ -56,6 +57,9 @@ public class Passenger {
 
     public void setReservation_list(ArrayList<Reservation> reservation_list) {
         this.reservation_list = reservation_list;
+    }
+    public void addReservation(Reservation reservation){
+        this.reservation_list.add(reservation);
     }
 
     @Override

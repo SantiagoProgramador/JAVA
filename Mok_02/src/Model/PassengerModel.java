@@ -3,6 +3,7 @@ package Model;
 import Database.CRUD;
 import Database.ConfigDB;
 import Entity.Airplane;
+import Entity.Flight;
 import Entity.Passenger;
 import Entity.Reservation;
 
@@ -46,10 +47,9 @@ public class PassengerModel implements CRUD {
     public List<Object> read() {
         Connection connection = ConfigDB.openConnection();
         List<Object> passengers_list = new ArrayList<>();
-        ArrayList<Reservation> reservations_list = new ArrayList<>();
 
         try {
-            String sql = "SELECT * FROM Passenger JOIN Reservation ON Reservation.id_passenger = Passenger.id_passenger";
+            String sql = "SELECT * FROM Passenger JOIN Reservation ON Reservation.id_passenger = Passenger.id_passenger JOIN Flight ON Flight.id_flight = Reservation.id_flight JOIN Plane ON Plane.id_plane = Flight.id_plane";
             PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement(sql);
 
             ResultSet resultSet = (ResultSet) preparedStatement.executeQuery();
@@ -62,20 +62,30 @@ public class PassengerModel implements CRUD {
                 passenger.setIdentification_document(resultSet.getString("identification_document"));
                 passengers_list.add(passenger);
 
+                Airplane airplane = new Airplane();
+                airplane.setId(resultSet.getInt("Plane.id_plane"));
+                airplane.setModel(resultSet.getString("Plane.model"));
+                airplane.setCapacity(resultSet.getInt("Plane.capacity"));
+
+                Flight flight = new Flight();
+                flight.setId(resultSet.getInt("id_flight"));
+                flight.setAirplane(airplane);
+                flight.setDestination(resultSet.getString("Flight.destination"));
+                flight.setDeparture_date(resultSet.getDate("Flight.departure_date").toLocalDate());
+                flight.setDeparture_time(resultSet.getTime("Flight.departure_time").toLocalTime());
 
                 Reservation reservation = new Reservation();
                 reservation.setId(resultSet.getInt("Reservation.id_reservation"));
                 reservation.setPassenger(passenger);
                 reservation.setSeat(resultSet.getString("Reservation.seat"));
                 reservation.setBooking_date(resultSet.getDate("Reservation.reservation_date").toLocalDate());
-                reservations_list.add(reservation);
-                passenger.setReservation_list(reservations_list);
-            }
+                reservation.setFlight(flight);
 
+                passenger.addReservation(reservation);
+            }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null,"Error >> " + e);
         }
-
         ConfigDB.closeConnection();
         return passengers_list;
     }
@@ -133,7 +143,7 @@ public class PassengerModel implements CRUD {
         Passenger passenger = null;
 
         try {
-            String sql = "SELECT * FROM Passenger WHERE id_plane = " + id;
+            String sql = "SELECT * FROM Passenger WHERE id_passenger = " + id;
             PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement(sql);
 
             ResultSet resultSet = (ResultSet) preparedStatement.executeQuery();

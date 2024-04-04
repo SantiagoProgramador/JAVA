@@ -1,9 +1,12 @@
 package ControllerMenu;
 
+import Controller.FlightController;
+
 import javax.swing.*;
 
 public class FlightMenu {
     public void Menu(){
+        FlightController flightController = new FlightController();
         String option = null;
         do {
             try {
@@ -19,14 +22,20 @@ public class FlightMenu {
                         """);
                 switch (option){
                     case "1":
+                        flightController.addFlight();
                         break;
                     case "2":
+                        if (flightController.isEmpty())return;
+                        JOptionPane.showMessageDialog(null,flightController.showFlights().get(0));
                         break;
                     case "3":
+                        flightController.updateFlight();
                         break;
                     case "4":
+                        flightController.filterById();
                         break;
                     case "5":
+                        flightController.deleteFlight();
                         break;
                     case "6":
                         JOptionPane.showMessageDialog(null,"Closing the flights menu...");
