@@ -55,6 +55,8 @@ public class Patient_model implements CRUD{
                 patient.setSurname(resultSet.getString("surname"));
                 patient.setBirthdate(resultSet.getDate("birthdate").toLocalDate());
                 patient.setIdentification_document(resultSet.getString("identification_document"));
+
+
                 Patient_list.add(patient);
             }
         } catch (SQLException e) {
