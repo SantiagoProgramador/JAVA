@@ -10,6 +10,7 @@ import Entity.Reservation;
 
 import javax.swing.*;
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -74,7 +75,7 @@ public class FlightModel implements CRUD {
                 reservation.setId(resultSet.getInt("Reservation.id_reservation"));
                 reservation.setFlight(flight);
                 reservation.setSeat(resultSet.getString("Reservation.seat"));
-                reservation.setBooking_date(resultSet.getDate("Reservation.reservation_date").toLocalDate());
+                reservation.setBooking_date(LocalDate.now());
                 reservation.setPassenger(passenger);
 
                 passenger.addReservation(reservation);

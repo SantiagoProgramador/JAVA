@@ -12,6 +12,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,7 +50,7 @@ public class PassengerModel implements CRUD {
         List<Object> passengers_list = new ArrayList<>();
 
         try {
-            String sql = "SELECT * FROM Passenger JOIN Reservation ON Reservation.id_passenger = Passenger.id_passenger JOIN Flight ON Flight.id_flight = Reservation.id_flight JOIN Plane ON Plane.id_plane = Flight.id_plane";
+            String sql = "SELECT * FROM Passenger LEFT JOIN Reservation ON Reservation.id_passenger = Passenger.id_passenger LEFT JOIN Flight ON Flight.id_flight = Reservation.id_flight LEFT JOIN Plane ON Plane.id_plane = Flight.id_plane";
             PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement(sql);
 
             ResultSet resultSet = (ResultSet) preparedStatement.executeQuery();
@@ -60,28 +61,29 @@ public class PassengerModel implements CRUD {
                 passenger.setName(resultSet.getString("first_name"));
                 passenger.setSurname(resultSet.getString("last_name"));
                 passenger.setIdentification_document(resultSet.getString("identification_document"));
-                passengers_list.add(passenger);
 
                 Airplane airplane = new Airplane();
                 airplane.setId(resultSet.getInt("Plane.id_plane"));
                 airplane.setModel(resultSet.getString("Plane.model"));
                 airplane.setCapacity(resultSet.getInt("Plane.capacity"));
 
-                Flight flight = new Flight();
-                flight.setId(resultSet.getInt("id_flight"));
-                flight.setAirplane(airplane);
-                flight.setDestination(resultSet.getString("Flight.destination"));
-                flight.setDeparture_date(resultSet.getDate("Flight.departure_date").toLocalDate());
-                flight.setDeparture_time(resultSet.getTime("Flight.departure_time").toLocalTime());
+                //Flight flight = new Flight();
+                //flight.setId(resultSet.getInt("id_flight"));
+                //flight.setAirplane(airplane);
+                //flight.setDestination(resultSet.getString("Flight.destination"));
+                //flight.setDeparture_date(resultSet.getDate("Flight.departure_date").toLocalDate());
+                //flight.setDeparture_time(resultSet.getTime("Flight.departure_time").toLocalTime());
 
                 Reservation reservation = new Reservation();
                 reservation.setId(resultSet.getInt("Reservation.id_reservation"));
                 reservation.setPassenger(passenger);
                 reservation.setSeat(resultSet.getString("Reservation.seat"));
-                reservation.setBooking_date(resultSet.getDate("Reservation.reservation_date").toLocalDate());
-                reservation.setFlight(flight);
+                reservation.setBooking_date(LocalDate.now());
+                //reservation.setFlight(flight);
 
                 passenger.addReservation(reservation);
+                passengers_list.add(passenger);
+
             }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null,"Error >> " + e);

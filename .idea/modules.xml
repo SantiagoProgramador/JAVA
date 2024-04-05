@@ -3,8 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Desktop.iml" filepath="$PROJECT_DIR$/Desktop.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Mok_01/Mok_01.iml" filepath="$PROJECT_DIR$/Mok_01/Mok_01.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Mok_02/Mok_02.iml" filepath="$PROJECT_DIR$/Mok_02/Mok_02.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Mock_01/Mok_01.iml" filepath="$PROJECT_DIR$/Mock_01/Mok_01.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Mock_02/Mok_02.iml" filepath="$PROJECT_DIR$/Mock_02/Mok_02.iml" />
       <module fileurl="file://$PROJECT_DIR$/_01_Java/_01_Java.iml" filepath="$PROJECT_DIR$/_01_Java/_01_Java.iml" />
       <module fileurl="file://$PROJECT_DIR$/_02_bucles/_02_bucles.iml" filepath="$PROJECT_DIR$/_02_bucles/_02_bucles.iml" />
       <module fileurl="file://$PROJECT_DIR$/_03_arrays_lists/_03_arrays_lists.iml" filepath="$PROJECT_DIR$/_03_arrays_lists/_03_arrays_lists.iml" />
