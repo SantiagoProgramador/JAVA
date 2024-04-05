@@ -36,6 +36,7 @@ public class AirplaneController {
         return list;
     }
     public void deleteAirplane(){
+        if (isEmpty())return;
         int idDelete = Integer.parseInt(JOptionPane.showInputDialog(showAirplanes()+"\nType the id of the airplane you want to delete"));
 
         Airplane airplane = (Airplane) airplaneModel.findById(idDelete);
@@ -49,6 +50,7 @@ public class AirplaneController {
         }
     }
     public void filterById(){
+        if (isEmpty())return;
         int idSearch = Integer.parseInt(JOptionPane.showInputDialog(showAirplanes()+"\nType the id of the airplane you want to search"));
 
         Airplane airplane = (Airplane) airplaneModel.findById(idSearch);
@@ -59,6 +61,7 @@ public class AirplaneController {
         JOptionPane.showMessageDialog(null,airplane.toString());
     }
     public void updateAirplane(){
+        if (isEmpty()) return;
         int idUpdate = Integer.parseInt(JOptionPane.showInputDialog(showAirplanes()+"\nType the id of the airplane you want to update"));
 
         Airplane airplane = (Airplane) airplaneModel.findById(idUpdate);

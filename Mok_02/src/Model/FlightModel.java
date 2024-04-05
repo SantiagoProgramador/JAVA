@@ -1,5 +1,6 @@
 package Model;
 
+import Controller.FlightController;
 import Database.CRUD;
 import Database.ConfigDB;
 import Entity.Airplane;
@@ -32,7 +33,7 @@ public class FlightModel implements CRUD {
             while (resultSet.next()){
                 flight.setId(resultSet.getInt(1));
             }
-            JOptionPane.showMessageDialog(null,"Flight added Successfully!" + flight.toString());
+            JOptionPane.showMessageDialog(null,"Flight added Successfully! " + flight.toString());
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null,"Error >> " + e);
         }
@@ -47,7 +48,7 @@ public class FlightModel implements CRUD {
         List<Object> flights_list = new ArrayList<>();
 
         try {
-            String sql = "SELECT * FROM Flight JOIN Plane ON Plane.id_plane = Flight.id_plane JOIN Reservation ON Reservation.id_flight = Flight.id_flight JOIN Passenger ON Passenger.id_passenger = Reservation.id_passenger";
+            String sql = "SELECT * FROM Flight LEFT JOIN Plane ON Plane.id_plane = Flight.id_plane LEFT JOIN Reservation ON Reservation.id_flight = Flight.id_flight LEFT JOIN Passenger ON Passenger.id_passenger = Reservation.id_passenger";
             PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement(sql);
 
             ResultSet resultSet = (ResultSet) preparedStatement.executeQuery();
@@ -55,8 +56,8 @@ public class FlightModel implements CRUD {
                 Flight flight = new Flight();
                 flight.setId(resultSet.getInt("id_flight"));
                 flight.setDestination(resultSet.getString("destination"));
-                flight.setDeparture_date(resultSet.getDate("departure_date").toLocalDate());
-                flight.setDeparture_time(resultSet.getTime("departure_time").toLocalTime());
+                flight.setDeparture_date(resultSet.getDate("Flight.departure_date").toLocalDate());
+                flight.setDeparture_time(resultSet.getTime("Flight.departure_time").toLocalTime());
 
                 Airplane airplane = new Airplane();
                 airplane.setId(resultSet.getInt("Plane.id_plane"));
@@ -85,8 +86,9 @@ public class FlightModel implements CRUD {
 
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null,"Error >> " + e);
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null,"Error >> " + e);
         }
-
         ConfigDB.closeConnection();
         return flights_list;
     }
@@ -94,18 +96,18 @@ public class FlightModel implements CRUD {
     @Override
     public boolean update(Object object) {
         Connection connection = ConfigDB.openConnection();
-        Airplane airplane = (Airplane) object;
+        Flight flight = (Flight) object;
 
         try {
-            String sql = "UPDATE Plane SET model = '" + airplane.getModel() + "' ,capacity = '" + airplane.getModel() + "' WHERE id_plane = " + airplane.getId();
+            String sql = "UPDATE Flight SET destination = '" + flight.getDestination() + "' ,departure_date = '" + flight.getDeparture_date() + "' ,departure_time ='" +flight.getDeparture_time() + "' ,id_plane = '"+flight.getAirplane().getId() +"' WHERE id_plane = " + flight.getId();
             PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
             preparedStatement.execute();
 
             ResultSet resultSet = (ResultSet) preparedStatement.getGeneratedKeys();
             while (resultSet.next()){
-                airplane.setId(resultSet.getInt(1));
+                flight.setId(resultSet.getInt(1));
             }
-            JOptionPane.showMessageDialog(null,"Airplane updated successfully!" + airplane.toString());
+            JOptionPane.showMessageDialog(null,"Flight updated successfully!" + flight.toString());
 
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null,"Error >> " + e);
@@ -121,14 +123,14 @@ public class FlightModel implements CRUD {
         Connection connection = ConfigDB.openConnection();
 
         try {
-            String sql = "DELETE FROM Plane WHERE plane.id_plane = " + id;
+            String sql = "DELETE FROM Flight WHERE Flight.id_flight = " + id;
             PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement(sql);
 
             int rowsAffected = preparedStatement.executeUpdate();
             if (rowsAffected > 0){
-                JOptionPane.showMessageDialog(null,"Airplane deleted successfully");
+                JOptionPane.showMessageDialog(null,"Flight deleted successfully");
             } else {
-                JOptionPane.showMessageDialog(null,"The airplane was not found");
+                JOptionPane.showMessageDialog(null,"The flight was not found");
             }
 
         } catch (SQLException e) {
@@ -141,19 +143,40 @@ public class FlightModel implements CRUD {
     @Override
     public Object findById(int id) {
         Connection connection = ConfigDB.openConnection();
-        Airplane airplane = null;
+        Flight flight = null;
 
         try {
-            String sql = "SELECT * FROM Plane WHERE id_plane = " + id;
+            String sql = "SELECT * FROM Flight JOIN Plane ON Flight.id_plane = Plane.id_plane JOIN Reservation ON Reservation.id_flight = Flight.id_flight JOIN Passenger ON Passenger.id_passenger = Reservation.id_passenger WHERE Flight.id_flight = " + id;
             PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement(sql);
 
             ResultSet resultSet = (ResultSet) preparedStatement.executeQuery();
             while (resultSet.next()){
-                airplane = new Airplane();
-                airplane.setId(resultSet.getInt("id_plane"));
-                airplane.setCapacity(resultSet.getInt("capacity"));
-                airplane.setModel(resultSet.getString("model"));
+                Airplane airplane = new Airplane();
+                airplane.setId(resultSet.getInt("Plane.id_plane"));
+                airplane.setModel(resultSet.getString("Plane.model"));
+                airplane.setCapacity(resultSet.getInt("Plane.capacity"));
 
+                Passenger passenger = new Passenger();
+                passenger.setId(resultSet.getInt("Passenger.id_passenger"));
+                passenger.setName(resultSet.getString("Passenger.first_name"));
+                passenger.setSurname(resultSet.getString("Passenger.last_name"));
+                passenger.setIdentification_document(resultSet.getString("Passenger.identification_document"));
+
+                Reservation reservation = new Reservation();
+                reservation.setSeat(resultSet.getString("Reservation.seat"));
+                reservation.setId(resultSet.getInt("Reservation.id_reservation"));
+                reservation.setBooking_date(resultSet.getDate("Reservation.reservation_date").toLocalDate());
+                reservation.setPassenger(passenger);
+
+                flight = new Flight();
+                flight.setId(resultSet.getInt("id_flight"));
+                flight.setDestination(resultSet.getString("destination"));
+                flight.setDeparture_date(resultSet.getDate("departure_date").toLocalDate());
+                flight.setDeparture_time(resultSet.getTime("departure_time").toLocalTime());
+                flight.setAirplane(airplane);
+                reservation.setFlight(flight);
+                passenger.addReservation(reservation);
+                flight.addReservation(reservation);
             }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null,"Error >> " + e);
@@ -161,6 +184,6 @@ public class FlightModel implements CRUD {
 
 
         ConfigDB.closeConnection();
-        return airplane;
+        return flight;
     }
 }

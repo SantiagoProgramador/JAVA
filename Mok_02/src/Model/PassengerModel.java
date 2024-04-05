@@ -104,7 +104,7 @@ public class PassengerModel implements CRUD {
             while (resultSet.next()){
                 passenger.setId(resultSet.getInt(1));
             }
-            JOptionPane.showMessageDialog(null,"Airplane updated successfully!" + passenger.toString());
+            JOptionPane.showMessageDialog(null,"Passenger updated successfully!" + passenger.toString());
 
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null,"Error >> " + e);

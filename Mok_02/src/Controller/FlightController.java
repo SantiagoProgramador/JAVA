@@ -31,21 +31,23 @@ public class FlightController {
         }
         String destination = JOptionPane.showInputDialog("Type the destination of the flight");
         String departure_date = JOptionPane.showInputDialog("Type the date of the flight (YYYY-MM-DD)");
-        String departure_time = JOptionPane.showInputDialog("Type the hour of the flight (YYYY-MM-DD)");
+        String departure_time = JOptionPane.showInputDialog("Type the hour of the flight (HH:MM)");
 
         flight.setDestination(destination);
         flight.setDeparture_date(LocalDate.parse(departure_date));
         flight.setDeparture_time(LocalTime.parse(departure_time));
         flight.setAirplane(airplane);
         flightModel.create(flight);
+
     }
     public List<String> showFlights(){
         List<String> list = new ArrayList<>();
         String flightInfo = "Flights: \n";
         String flightNameId = "";
+
         for (Object flightObj : flightModel.read()){
             Flight flight = (Flight) flightObj;
-            flightInfo += "Id: " + flight.getId() + ", Destination: " + flight.getDestination() + ", Departure time: " + flight.getDeparture_date() + flight.getDeparture_time() + "\n Plane: " + flight.getAirplane().toString() + "\n Reservations: " + flight.getReservations_list().toString() + "\n\n";
+            flightInfo += "Id: " + flight.getId() + ", Destination: " + flight.getDestination() + ", Departure time: " + flight.getDeparture_date() + flight.getDeparture_time() + "\n Plane: " + flight.getAirplane().toString() + "\n Reservations: " + (flight.getReservations_list().isEmpty() ? " No reservations yet ":flight.getReservations_list().toString()) + "\n\n";
             flightNameId += "Id: " + flight.getId() + ", Destination: " + flight.getDestination() + ", Departure time: " + flight.getDeparture_date() + flight.getDeparture_time() + "\n";
         }
 

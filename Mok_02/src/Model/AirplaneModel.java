@@ -33,7 +33,7 @@ public class AirplaneModel implements CRUD {
                 airplane.setId(resultSet.getInt(1));
 
             }
-            JOptionPane.showMessageDialog(null,"Airplane added Successfully!" + airplane.toString());
+            JOptionPane.showMessageDialog(null,"Airplane added Successfully! " + airplane.toString());
 
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null,"Error >> " + e);
@@ -76,7 +76,7 @@ public class AirplaneModel implements CRUD {
         Airplane airplane = (Airplane) object;
 
         try {
-            String sql = "UPDATE Plane SET model = '" + airplane.getModel() + "' ,capacity = '" + airplane.getModel() + "' WHERE id_plane = " + airplane.getId();
+            String sql = "UPDATE Plane SET model = '" + airplane.getModel() + "' ,capacity = '" + airplane.getCapacity() + "' WHERE id_plane = " + airplane.getId();
             PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
             preparedStatement.execute();
 
@@ -100,7 +100,7 @@ public class AirplaneModel implements CRUD {
         Connection connection = ConfigDB.openConnection();
 
         try {
-            String sql = "DELETE FROM Plane WHERE plane.id_plane = " + id;
+            String sql = "DELETE FROM Plane WHERE Plane.id_plane = " + id;
             PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement(sql);
 
             int rowsAffected = preparedStatement.executeUpdate();
