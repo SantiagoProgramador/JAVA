@@ -1,0 +1,14 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Spring Boot-FirstWebApplication<FirstWeb>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "com.riwi.FirstWeb.FirstWebApplication",
+      "projectName": "FirstWeb",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
+    }
+  ]
+}
