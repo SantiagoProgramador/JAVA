@@ -1,0 +1,25 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Spring Boot-FirstWebApplication<FirstWeb>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "com.riwi.FirstWeb.FirstWebApplication",
+      "projectName": "FirstWeb",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env",
+      "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=43189 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=FirstWeb"
+    },
+    {
+      "type": "java",
+      "name": "Spring Boot-HelloWorldApplication<helloWorld>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "com.riwi.helloWorld.HelloWorldApplication",
+      "projectName": "helloWorld",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
+    }
+  ]
+}
