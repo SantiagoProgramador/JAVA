@@ -19,7 +19,12 @@ public class ProductService implements IProdcutService {
 
   @Override
   public Product saveProduct(Product product) {
-    return null;
+
+    Product product = new Product();
+    product.setName
+
+    return this.productRepositoy.save(product);
+
   }
 
   @Override

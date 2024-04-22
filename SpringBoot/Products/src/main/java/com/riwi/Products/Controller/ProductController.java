@@ -27,4 +27,11 @@ public class ProductController {
     return ResponseEntity.ok(this.iProdcutService.getProducts());
   }
 
+  @PostMapping("/add")
+  public ResponseEntity<Product> addProduct(@RequestBody Product product){
+
+
+    return new ResponseEntity<>(this.iProdcutService.saveProduct(product),HttpStatus.CREATED);
+  }
+
 }
