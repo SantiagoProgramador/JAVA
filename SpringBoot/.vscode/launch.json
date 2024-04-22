@@ -1,0 +1,24 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Spring Boot-MathOperationsApplication<mathOperations>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "com.riwi.mathOperations.MathOperationsApplication",
+      "projectName": "mathOperations",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
+    },
+    {
+      "type": "java",
+      "name": "Spring Boot-ProductsApplication<Products>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "com.riwi.Products.ProductsApplication",
+      "projectName": "Products",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
+    }
+  ]
+}
