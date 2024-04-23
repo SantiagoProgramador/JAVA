@@ -7,5 +7,5 @@ import com.riwi.Products.Entity.Product;
 
 @Repository
 public interface ProductRepositoy extends JpaRepository<Product, Long> {
-  public Product findByName(String name);
+  public Product findByNameContaining(String name);
 }

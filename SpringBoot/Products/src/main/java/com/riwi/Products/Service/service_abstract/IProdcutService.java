@@ -13,7 +13,7 @@ public interface IProdcutService {
 
   public boolean deleteProduct(Long id);
 
-  public Product updateProduct(Long id);
+  public Product updateProduct(Long id, Product product);
 
   public List<Product> findProducts(String name);
 

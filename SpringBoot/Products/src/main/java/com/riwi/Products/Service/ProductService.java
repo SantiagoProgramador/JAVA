@@ -19,10 +19,6 @@ public class ProductService implements IProdcutService {
 
   @Override
   public Product saveProduct(Product product) {
-
-    Product product = new Product();
-    product.setName
-
     return this.productRepositoy.save(product);
 
   }
@@ -34,17 +30,27 @@ public class ProductService implements IProdcutService {
 
   @Override
   public Product findProductById(Long id) {
-    return null;
+    return this.productRepositoy.findById(id).orElse(null);
   }
 
   @Override
   public boolean deleteProduct(Long id) {
-    return false;
+    if (findProductById(id) == null) {
+      return false;
+    } else
+      this.productRepositoy.deleteById(id);
+    return true;
   }
 
   @Override
-  public Product updateProduct(Long id) {
-    return null;
+  public Product updateProduct(Long id, Product product) {
+    Product productUpdate = findProductById(id);
+    if (productUpdate == null) {
+      return null;
+    }
+    productUpdate = product;
+    productUpdate.setId(id);
+    return this.productRepositoy.save(productUpdate);
   }
 
   @Override
