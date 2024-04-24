@@ -3,6 +3,9 @@ package com.Events.Events.Service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.Events.Events.Entity.Event;
@@ -23,10 +26,10 @@ public class EventService implements IEventService {
 
     }
 
-    @Override
-    public List<Event> getEvents() {
-        return this.EventRepository.findAll();
-    }
+    // @Override
+    // public List<Event> getEvents() {
+    // return this.EventRepository.findAll();
+    // }
 
     @Override
     public Event findEventById(String id) {
@@ -57,6 +60,16 @@ public class EventService implements IEventService {
     public List<Event> findEvents(String name) {
         return this.EventRepository.findByNameContaining(name);
 
+    }
+
+    public Page<Event> findPaginated(int page, int size) {
+        if (page < 0) {
+            page = 1;
+        }
+
+        Pageable pageable = PageRequest.of(page, size);
+
+        return this.EventRepository.findAll(pageable);
     }
 
 }

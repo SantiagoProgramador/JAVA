@@ -13,8 +13,10 @@ import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,10 +31,12 @@ public class EventController {
     @Autowired
     private final IEventService iEventService;
 
+    @CrossOrigin
     @GetMapping
-    public ResponseEntity<List<Event>> ShowEvents() {
+    public ResponseEntity<Page<Event>> ShowEvents(@RequestParam(defaultValue = "1") int page,
+            @RequestParam(defaultValue = "1") int size) {
 
-        return ResponseEntity.ok(this.iEventService.getEvents());
+        return ResponseEntity.ok(this.iEventService.findPaginated(page - 1, size));
     }
 
     @PostMapping("/add")

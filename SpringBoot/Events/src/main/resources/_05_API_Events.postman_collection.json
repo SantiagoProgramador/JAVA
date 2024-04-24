@@ -1,0 +1,189 @@
+{
+	"info": {
+		"_postman_id": "6b97b088-c4f8-43df-95a9-28b0bf3b5ad7",
+		"name": "_05_API_Events",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34443834"
+	},
+	"item": [
+		{
+			"name": "ShowEvents",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{Events}}?page=5",
+					"host": [
+						"{{Events}}"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AddEvent",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var response = pm.response.json();",
+							"",
+							"pm.collectionVariables.set(\"id\",response.id);",
+							"",
+							"console.log(\"Id Saved \" + pm.collectionVariables.get(\"id\"));"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"MARRIAGE\",\n    \"date\": \"2024-10-30\",\n    \"ubication\": \"medellin\",\n    \"capacity\": 20\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{Events}}/add",
+					"host": [
+						"{{Events}}"
+					],
+					"path": [
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ShowEvent",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{Events}}/0771d788-f0e2-4766-8b23-d2f4dfe2565d",
+					"host": [
+						"{{Events}}"
+					],
+					"path": [
+						"0771d788-f0e2-4766-8b23-d2f4dfe2565d"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateEvent",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Birthddddy\",\n    \"date\": \"2024-10-30\",\n    \"ubication\": \"medellin\",\n    \"capacity\": 20\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{Events}}/update/0771d788-f0e2-4766-8b23-d2f4dfe2565d",
+					"host": [
+						"{{Events}}"
+					],
+					"path": [
+						"update",
+						"0771d788-f0e2-4766-8b23-d2f4dfe2565d"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteEvent",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{Events}}/delete/c7352de8-a27b-4f65-b07e-b4213f023cf7",
+					"host": [
+						"{{Events}}"
+					],
+					"path": [
+						"delete",
+						"c7352de8-a27b-4f65-b07e-b4213f023cf7"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FilterEventsByName",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{Events}}/search?name=dddd",
+					"host": [
+						"{{Events}}"
+					],
+					"path": [
+						"search"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "dddd"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "Events",
+			"value": "http://localhost:8080/api/v1/Events"
+		},
+		{
+			"key": "id",
+			"value": ""
+		}
+	]
+}
