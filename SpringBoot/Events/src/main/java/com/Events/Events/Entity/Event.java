@@ -1,4 +1,6 @@
-package com.riwi.Products.Entity;
+package com.Events.Events.Entity;
+
+import java.time.LocalDate;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -15,7 +17,7 @@ import lombok.NoArgsConstructor;
 public class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private Long id;
+    private String id;
 
     private String name;
 
@@ -24,6 +26,5 @@ public class Event {
     private String ubication;
 
     private int capacity;
-
 
 }

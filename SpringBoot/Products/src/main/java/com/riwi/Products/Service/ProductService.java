@@ -55,7 +55,7 @@ public class ProductService implements IProdcutService {
 
   @Override
   public List<Product> findProducts(String name) {
-    return null;
+    return this.productRepositoy.findByNameContaining(name);
   }
 
 }

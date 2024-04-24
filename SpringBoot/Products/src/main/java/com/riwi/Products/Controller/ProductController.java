@@ -1,6 +1,7 @@
 package com.riwi.Products.Controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.riwi.Products.Entity.Product;
@@ -10,7 +11,6 @@ import lombok.AllArgsConstructor;
 
 import java.util.List;
 
-import org.apache.catalina.connector.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -57,5 +57,9 @@ public class ProductController {
     return ResponseEntity.ok(this.iProdcutService.deleteProduct(id));
   }
 
-  
+  @GetMapping(path = "/search")
+  public ResponseEntity<List<Product>> filterProductsByName(@RequestParam String name) {
+    return ResponseEntity.ok(this.iProdcutService.findProducts(name));
+  }
+
 }

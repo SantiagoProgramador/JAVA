@@ -19,6 +19,16 @@
       "projectName": "Products",
       "args": "",
       "envFile": "${workspaceFolder}/.env"
+    },
+    {
+      "type": "java",
+      "name": "Spring Boot-EventsApplication<Events>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "com.Events.Events.EventsApplication",
+      "projectName": "Events",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
     }
   ]
 }
