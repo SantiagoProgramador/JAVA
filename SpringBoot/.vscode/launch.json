@@ -29,6 +29,16 @@
       "projectName": "Events",
       "args": "",
       "envFile": "${workspaceFolder}/.env"
+    },
+    {
+      "type": "java",
+      "name": "Spring Boot-VacantApplication<Vacant>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "com.santiago.Vacant.VacantApplication",
+      "projectName": "Vacant",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
     }
   ]
 }
