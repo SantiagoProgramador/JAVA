@@ -1,4 +1,4 @@
-package main.java.com.santiago.Vacant.Entity;
+package com.santiago.Vacant.Entity.Entity;
 
 import java.util.ArrayList;
 import java.util.List;
