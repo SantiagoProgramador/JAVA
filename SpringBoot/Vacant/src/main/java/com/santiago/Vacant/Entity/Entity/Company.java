@@ -1,6 +1,5 @@
 package com.santiago.Vacant.Entity.Entity;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
@@ -39,7 +38,7 @@ public class Company {
   @OneToMany(mappedBy = "company", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = false)
   @ToString.Exclude
   @EqualsAndHashCode.Exclude
-  private List<Vacant> vacants = new ArrayList<>();
+  private List<Vacant> vacants;
 
   public void addVacant(Vacant vacant) {
     this.vacants.add(vacant);
