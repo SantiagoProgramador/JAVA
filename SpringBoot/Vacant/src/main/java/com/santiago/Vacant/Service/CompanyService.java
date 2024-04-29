@@ -1,5 +1,8 @@
 package com.santiago.Vacant.Service;
 
+import java.util.ArrayList;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -9,7 +12,9 @@ import org.springframework.stereotype.Service;
 
 import com.santiago.Vacant.Dto.Request.CompanyRequest;
 import com.santiago.Vacant.Dto.Response.CompanyResponse;
+import com.santiago.Vacant.Dto.Response.VacantToCompanyResponse;
 import com.santiago.Vacant.Entity.Entity.Company;
+import com.santiago.Vacant.Entity.Entity.Vacant;
 import com.santiago.Vacant.Repository.CompanyRepository;
 import com.santiago.Vacant.Service.interfaces.ICompanyService;
 
@@ -30,17 +35,23 @@ public class CompanyService implements ICompanyService {
 
     Pageable pageable = PageRequest.of(page, size);
 
-    return this.companyRepository.findAll(pageable).map(companyResponse -> this.changeToCompany(companyResponse));
+    return this.companyRepository.findAll(pageable)
+        .map(companyResponse -> this.changeToCompanyResponse(companyResponse));
   }
 
   @Override
-  public CompanyResponse create(CompanyRequest request) {
+  public CompanyResponse create(CompanyRequest companyRequest) {
+    Company company = this.changeToCompany(companyRequest, new Company());
 
+    return this.changeToCompanyResponse(this.companyRepository.save(company));
   }
 
   @Override
-  public CompanyResponse update(CompanyRequest request, String id) {
+  public CompanyResponse update(CompanyRequest companyRequest, String id) {
+    Company company = this.changeToCompany(companyRequest, new Company());
+    company = this.findCompanyById(id);
 
+    return this.changeToCompanyResponse(this.companyRepository.save(company));
   }
 
   @Override
@@ -49,15 +60,34 @@ public class CompanyService implements ICompanyService {
   }
 
   @Override
-  public CompanyResponse findById(CompanyRequest request, String id) {
-
+  public CompanyResponse findById(String id) {
+    Company company = this.findCompanyById(id);
+    return this.changeToCompanyResponse(company);
   }
 
-  private CompanyResponse changeToCompany(Company company) {
+  private Company findCompanyById(String id) {
+    return this.companyRepository.findById(id).orElseThrow();
+  }
+
+  private CompanyResponse changeToCompanyResponse(Company company) {
+
     CompanyResponse companyResponse = new CompanyResponse();
     BeanUtils.copyProperties(company, companyResponse);
-
+    companyResponse.setVacants(
+        company.getVacants().stream().map(vacant -> this.changeToVacantToCompany(vacant)).collect(Collectors.toList()));
     return companyResponse;
+  }
+
+  private VacantToCompanyResponse changeToVacantToCompany(Vacant vacant) {
+    VacantToCompanyResponse vacantToCompany = new VacantToCompanyResponse();
+    BeanUtils.copyProperties(vacant, vacantToCompany);
+    return vacantToCompany;
+  }
+
+  private Company changeToCompany(CompanyRequest companyRequest, Company company) {
+    company.setVacants(new ArrayList<>());
+    BeanUtils.copyProperties(companyRequest, company);
+    return company;
   }
 
 }

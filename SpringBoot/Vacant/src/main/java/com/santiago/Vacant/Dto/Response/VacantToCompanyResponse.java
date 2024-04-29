@@ -1,7 +1,6 @@
 package com.santiago.Vacant.Dto.Response;
 
-import java.util.List;
-
+import ch.qos.logback.core.status.Status;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -11,11 +10,9 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class CompanyResponse {
-  private String id;
-  private String name;
-  private String location;
-  private String contact;
-  private List<VacantToCompanyResponse> vacants;
-
+public class VacantToCompanyResponse {
+  private Long id;
+  private String description;
+  private Status status;
+  private String title;
 }
