@@ -15,6 +15,7 @@ import com.santiago.Vacant.Dto.Response.CompanyResponse;
 import com.santiago.Vacant.Dto.Response.VacantToCompanyResponse;
 import com.santiago.Vacant.Entity.Entity.Company;
 import com.santiago.Vacant.Entity.Entity.Vacant;
+import com.santiago.Vacant.Exceptions.idNotFoundException;
 import com.santiago.Vacant.Repository.CompanyRepository;
 import com.santiago.Vacant.Service.interfaces.ICompanyService;
 
@@ -48,14 +49,17 @@ public class CompanyService implements ICompanyService {
 
   @Override
   public CompanyResponse update(CompanyRequest companyRequest, String id) {
-    Company company = this.changeToCompany(companyRequest, new Company());
-    company = this.findCompanyById(id);
+    Company company = this.findCompanyById(id);
+    Company companyToUpdate = this.changeToCompany(companyRequest, company);
 
-    return this.changeToCompanyResponse(this.companyRepository.save(company));
+    return this.changeToCompanyResponse(this.companyRepository.save(companyToUpdate));
   }
 
   @Override
   public void delete(String id) {
+    Company company = this.findCompanyById(id);
+
+    this.companyRepository.delete(company);
 
   }
 
@@ -66,7 +70,7 @@ public class CompanyService implements ICompanyService {
   }
 
   private Company findCompanyById(String id) {
-    return this.companyRepository.findById(id).orElseThrow();
+    return this.companyRepository.findById(id).orElseThrow(() -> new idNotFoundException("Company"));
   }
 
   private CompanyResponse changeToCompanyResponse(Company company) {
