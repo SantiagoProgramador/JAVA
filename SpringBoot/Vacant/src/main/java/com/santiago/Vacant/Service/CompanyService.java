@@ -31,7 +31,7 @@ public class CompanyService implements ICompanyService {
   @Override
   public Page<CompanyResponse> getAll(int page, int size) {
     if (page < 0) {
-      page = 1;
+      page = 0;
     }
 
     Pageable pageable = PageRequest.of(page, size);
