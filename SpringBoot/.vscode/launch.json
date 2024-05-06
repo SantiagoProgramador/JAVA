@@ -39,6 +39,16 @@
       "projectName": "Vacant",
       "args": "",
       "envFile": "${workspaceFolder}/.env"
+    },
+    {
+      "type": "java",
+      "name": "Spring Boot-BeautySalonApplication<BeautySalon>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "com.santiago.BeautySalon.BeautySalonApplication",
+      "projectName": "BeautySalon",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
     }
   ]
 }
