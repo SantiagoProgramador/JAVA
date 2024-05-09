@@ -19,9 +19,9 @@ public class ServiceController {
   @Autowired
   private final IEserviceService iEserviceService;
 
-  @GetMapping(path = "/{id}")
-  public ResponseEntity<EserviceResponse> showService(@RequestParam Long id){
+  // @GetMapping(path = "/{id}")
+  // public ResponseEntity<EserviceResponse> showService(@RequestParam Long id){
 
-  }
+  // }
 
 }

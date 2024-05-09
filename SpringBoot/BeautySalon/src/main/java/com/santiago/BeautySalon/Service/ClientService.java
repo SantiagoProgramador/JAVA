@@ -44,7 +44,7 @@ public class ClientService implements IClientService {
       case ASC -> pageable = PageRequest.of(page, size, Sort.by(FIELD_BY_SORT).ascending());
       case DESC -> pageable = PageRequest.of(page, size, Sort.by(FIELD_BY_SORT).descending());
     }
-
+    return null;
   }
 
   @Override
@@ -72,7 +72,7 @@ public class ClientService implements IClientService {
   }
 
   private ClientResponse clientToClientResponse(Client client) {
-    List<AppointmentToPersons> appointmentToPersons = 
+    // List<AppointmentToPersons> appointmentToPersons =
 
     return ClientResponse.builder()
         .id(client.getId()).firstName(client.getFirstName())
